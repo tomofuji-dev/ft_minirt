@@ -6,26 +6,26 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/13 16:04:12 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:35:13 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "color.h"
 #include "util.h"
-#include "vec.h"
+#include "math_utils.h"
+#include <math.h>
 #include <stdio.h>
 
-void		draw(t_env *env);
+void			draw(t_env *env);
+static int		diffuse_reflected_sphere(int x, int y);
+static float	intersect_sphere(int x, int y);
 
-/* 1-4
 void	draw(t_env *env)
 {
 	int		x;
 	int		y;
-	t_vec	s;
-	t_vec	d;
-	float	r;
+	int		color;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -33,28 +33,56 @@ void	draw(t_env *env)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			s = init_vec(0, 0, -5);
-			d = diff_vec(screen_to_coord(x, y), s);
-			r = 0.5;
-			if (is_cross_with_sphere(s, d, r))
-				pixel_put(env, x, y, encode_rgb(255, 0, 0));
-			else
-				pixel_put(env, x, y, encode_rgb(0, 0, 255));
+			color = diffuse_reflected_sphere(x, y);
+			pixel_put(env, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-static bool	is_cross_with_sphere(t_vec s, t_vec d, float r)
+static int	diffuse_reflected_sphere(int x, int y)
 {
-	float	a;
-	float	b;
-	float	c;
+	float	t, nl_product, gray;
+	t_vec	d, p, l, n;
 
-	a = abs_vec(d);
-	b = 2 * inner_product(s, d);
-	c = abs_vec(s) - r * r;
-	return (b * b - 4 * a * c >= 0);
+	t = intersect_sphere(x, y);
+	if (t <= 0)
+		return (encode_rgb(100, 149, 237));
+	d = diff_vec(screen_to_coord(x, y), init_vec(0, 0, -5));
+	p = add_vec(init_vec(0, 0, -5), constant_mul_vec(d, t));
+	l = norm_vec(diff_vec(init_vec(-5, 5, -5), p));
+	n = norm_vec(diff_vec(p, init_vec(0, 0, 5)));
+	nl_product = inner_product(l, n);
+	if (nl_product <= 0)
+		gray = 0;
+	else
+		gray = 255 * nl_product;
+	return (encode_rgb(gray, gray, gray));
 }
-*/
+
+static float	intersect_sphere(int x, int y)
+{
+	t_vec	s, d;
+	float	r, A, B, C, D, t1, t2;
+
+	s = diff_vec(init_vec(0, 0, -5), init_vec(0, 0, 5));
+	d = diff_vec(screen_to_coord(x, y), init_vec(0, 0, -5));
+	r = 1;
+	A = abs_vec(d);
+	B = 2 * inner_product(s, d);
+	C = abs_vec(s) - r * r;
+	D = B * B - 4 * A * C;
+	if (D > 0)
+	{
+		t1 = (-B + sqrt(D)) / (2 * A);
+		t2 = (-B - sqrt(D)) / (2 * A);
+		if (t1 > 0 && t2 > 0)
+			return (min(t1, t2));
+		else
+			return (max(t1, t2));
+	}
+	if (D == 0)
+		return (-B / (2 * A));
+	return (-1);
+}
