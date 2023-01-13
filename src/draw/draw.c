@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/13 15:52:18 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:04:12 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <stdio.h>
 
 void		draw(t_env *env);
-static bool	is_cross_with_sphere(t_vec s, t_vec d, float r);
 
+/* 1-4
 void	draw(t_env *env)
 {
 	int		x;
@@ -57,3 +57,4 @@ static bool	is_cross_with_sphere(t_vec s, t_vec d, float r)
 	c = abs_vec(s) - r * r;
 	return (b * b - 4 * a * c >= 0);
 }
+*/
