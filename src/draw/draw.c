@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/13 17:35:13 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:17:41 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdio.h>
 
 void			draw(t_env *env);
-static int		diffuse_reflected_sphere(int x, int y);
+static float	light_sphere(int x, int y);
 static float	intersect_sphere(int x, int y);
 
 void	draw(t_env *env)
@@ -33,7 +33,7 @@ void	draw(t_env *env)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			color = diffuse_reflected_sphere(x, y);
+			color = light_sphere(x, y);
 			pixel_put(env, x, y, color);
 			x++;
 		}
@@ -41,11 +41,12 @@ void	draw(t_env *env)
 	}
 }
 
-static int	diffuse_reflected_sphere(int x, int y)
+static float	light_sphere(int x, int y)
 {
-	float	t, nl_product, gray;
-	t_vec	d, p, l, n;
+	float	Ra, Rd, Rs, t, l_n, v_r, gray;
+	t_vec	d, p, l, n, r, v;
 
+	Ra = 0.01 * 0.1;
 	t = intersect_sphere(x, y);
 	if (t <= 0)
 		return (encode_rgb(100, 149, 237));
@@ -53,11 +54,23 @@ static int	diffuse_reflected_sphere(int x, int y)
 	p = add_vec(init_vec(0, 0, -5), constant_mul_vec(d, t));
 	l = norm_vec(diff_vec(init_vec(-5, 5, -5), p));
 	n = norm_vec(diff_vec(p, init_vec(0, 0, 5)));
-	nl_product = inner_product(l, n);
-	if (nl_product <= 0)
-		gray = 0;
+	l_n = inner_product(l, n);
+	if (l_n <= 0)
+	{
+		Rd = 0;
+		Rs = 0;
+	}
 	else
-		gray = 255 * nl_product;
+	{
+		Rd = 0.69 * 1.0 * l_n;
+		r = diff_vec(constant_mul_vec(n, 2 * inner_product(l, n)), l);
+		v = norm_vec(constant_mul_vec(d, -1));
+		v_r = inner_product(v, r);
+		if (v_r <= 0)
+			v_r = 0;
+		Rs = 0.3 * 1.0 * pow(v_r, 8);
+	}
+	gray = 255 * (Ra + Rd + Rs);
 	return (encode_rgb(gray, gray, gray));
 }
 
