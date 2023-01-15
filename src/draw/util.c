@@ -6,11 +6,11 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:59:15 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/13 15:39:00 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:21:40 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "minirt.h"
 
 void	pixel_put(t_env *env, int x, int y, int color)
 {

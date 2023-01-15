@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:32:57 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/13 17:30:00 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:20:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ t_vec	init_vec(float x, float y, float z)
 	});
 }
 
+void	set_vec(t_vec *v, float x, float y, float z)
+{
+	v->x = x;
+	v->y = y;
+	v->z = z;
+}
+
 t_vec	add_vec(t_vec v1, t_vec v2)
 {
 	return ((t_vec){
@@ -50,13 +57,13 @@ t_vec	diff_vec(t_vec v1, t_vec v2)
 
 t_vec	norm_vec(t_vec v)
 {
-	float	abs;
+	float	norm;
 
-	abs = sqrt(abs_vec(v));
+	norm = sqrt(abs_vec(v));
 	return ((t_vec){
-		.x = v.x / abs,
-		.y = v.y / abs,
-		.z = v.z / abs
+		.x = v.x / norm,
+		.y = v.y / norm,
+		.z = v.z / norm
 	});
 }
 

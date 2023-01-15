@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:33:29 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/13 17:35:05 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:01:35 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MATH_UTILS_H
 
 t_vec	init_vec(float x, float y, float z);
+void	set_vec(t_vec *v, float x, float y, float z);
 t_vec	add_vec(t_vec v1, t_vec v2);
 t_vec	diff_vec(t_vec v1, t_vec v2);
 t_vec	norm_vec(t_vec v);
@@ -23,5 +24,7 @@ t_vec	constant_mul_vec(t_vec v, float c);
 
 float	min(float x, float y);
 float	max(float x, float y);
+float	clamp(float f, float min, float max);
+float	rand_range(float a, float b);
 
 #endif

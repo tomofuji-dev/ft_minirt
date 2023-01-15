@@ -27,6 +27,8 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/draw/draw.c \
 				$(SRC_DIR)/draw/util.c \
+				$(SRC_DIR)/draw/intersect.c \
+				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/math/vec.c \
 				$(SRC_DIR)/math/utils.c
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
