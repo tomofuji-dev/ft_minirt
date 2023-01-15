@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:33:56 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:43:18 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	init(t_env *env)
 
 static void	init_env(t_env *env)
 {
+	t_scene	*scene;
+
 	env->mlx_ptr = mlx_init();
 	if (env->mlx_ptr == NULL)
 	{
@@ -65,6 +67,9 @@ static void	init_env(t_env *env)
 	env->img_data = mlx_get_data_addr(env->img_ptr, &env->bits_per_pixel, \
 										&env->bytes_per_line, &env->endian);
 	env->bytes_per_pixel = env->bits_per_pixel / 8;
+	scene = malloc(sizeof(t_scene));
+	scene_setting(scene);
+	env->scene = scene;
 }
 
 void	init_shape(t_shape *shape, t_shape_type st, ...)

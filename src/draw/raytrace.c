@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 17:40:49 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:41:10 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 				vars.l = norm_vec(constant_mul_vec(\
 									scene->lights[i].vector, -1));
 			vars.nl_dot = inner_product(intp.normal, vars.l);
-			if (vars.nl_dot < 0)
-				vars.nl_dot = 0;
+			vars.nl_dot = clamp(vars.nl_dot, 0, 1);
 			rgb->r += shape->material.diffuse_ref.r * scene->lights[i].illuminance.r * vars.nl_dot;
 			rgb->g += shape->material.diffuse_ref.g * scene->lights[i].illuminance.g * vars.nl_dot;
 			rgb->b += shape->material.diffuse_ref.b * scene->lights[i].illuminance.b * vars.nl_dot;
@@ -50,8 +49,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 				vars.v = norm_vec(constant_mul_vec(\
 										eye_ray->direction, -1));
 				vars.vr_dot = inner_product(vars.v, vars.r);
-				if (vars.vr_dot < 0)
-					vars.vr_dot = 0;
+				vars.vr_dot = clamp(vars.vr_dot, 0, 1);
 				vars.vr_dot_pow = pow(vars.vr_dot, shape->material.shininess);
 				rgb->r += shape->material.specular_ref.r * scene->lights[i].illuminance.r * vars.vr_dot_pow;
 				rgb->g += shape->material.specular_ref.g * scene->lights[i].illuminance.g * vars.vr_dot_pow;
