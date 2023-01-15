@@ -6,13 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:32:38 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:07:22 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-float	min(float x, float y)
+double	min(double x, double y)
 {
 	if (x <= y)
 		return (x);
@@ -20,7 +20,7 @@ float	min(float x, float y)
 		return (y);
 }
 
-float	max(float x, float y)
+double	max(double x, double y)
 {
 	if (x >= y)
 		return (x);
@@ -28,7 +28,7 @@ float	max(float x, float y)
 		return (y);
 }
 
-float	clamp(float f, float min, float max)
+double	clamp(double f, double min, double max)
 {
 	if (f < min)
 		return (min);
@@ -38,7 +38,7 @@ float	clamp(float f, float min, float max)
 		return (f);
 }
 
-float	rand_range(float a, float b)
+double	rand_range(double a, double b)
 {
-	return (a + (b - a) * (float)rand() / RAND_MAX);
+	return (a + (b - a) * (double)rand() / RAND_MAX);
 }

@@ -6,22 +6,22 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:32:57 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 16:20:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <math.h>
 
-t_vec	init_vec(float x, float y, float z);
+t_vec	init_vec(double x, double y, double z);
 t_vec	add_vec(t_vec v1, t_vec v2);
 t_vec	diff_vec(t_vec v1, t_vec v2);
 t_vec	norm_vec(t_vec v);
-float	inner_product(t_vec v1, t_vec v2);
-float	abs_vec(t_vec v);
-t_vec	constant_mul_vec(t_vec v, float c);
+double	inner_product(t_vec v1, t_vec v2);
+double	abs_vec(t_vec v);
+t_vec	constant_mul_vec(t_vec v, double c);
 
-t_vec	init_vec(float x, float y, float z)
+t_vec	init_vec(double x, double y, double z)
 {
 	return ((t_vec){
 		.x = x,
@@ -30,7 +30,7 @@ t_vec	init_vec(float x, float y, float z)
 	});
 }
 
-void	set_vec(t_vec *v, float x, float y, float z)
+void	set_vec(t_vec *v, double x, double y, double z)
 {
 	v->x = x;
 	v->y = y;
@@ -57,7 +57,7 @@ t_vec	diff_vec(t_vec v1, t_vec v2)
 
 t_vec	norm_vec(t_vec v)
 {
-	float	norm;
+	double	norm;
 
 	norm = sqrt(abs_vec(v));
 	return ((t_vec){
@@ -67,17 +67,17 @@ t_vec	norm_vec(t_vec v)
 	});
 }
 
-float	inner_product(t_vec v1, t_vec v2)
+double	inner_product(t_vec v1, t_vec v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
-float	abs_vec(t_vec v)
+double	abs_vec(t_vec v)
 {
 	return (v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
-t_vec	constant_mul_vec(t_vec v, float c)
+t_vec	constant_mul_vec(t_vec v, double c)
 {
 	return ((t_vec){
 		.x = c * v.x,

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 14:07:43 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 16:14:21 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 int		encode_rgb(uint8_t r, uint8_t g, uint8_t b);
 int		encode_trgb(t_rgb rgb);
-void	set_trgb(t_rgb *rgb, float r, float g, float b);
+void	set_trgb(t_rgb *rgb, double r, double g, double b);
 
 #endif

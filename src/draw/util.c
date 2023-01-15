@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:59:15 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 16:21:40 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	pixel_put(t_env *env, int x, int y, int color)
 t_vec	screen_to_coord(int x, int y)
 {
 	return ((t_vec){
-		.x = 2 * (float)x / (WINDOW_WIDTH - 1) - 1,
-		.y = -2 * (float)y / (WINDOW_HEIGHT - 1) + 1,
+		.x = 2 * (double)x / (WINDOW_WIDTH - 1) - 1,
+		.y = -2 * (double)y / (WINDOW_HEIGHT - 1) + 1,
 		.z = 0
 	});
 }

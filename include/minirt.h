@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:42:35 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,34 @@
 # define WINDOW_TITLE "minirt"
 
 typedef struct s_vec {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_vec;
 
 typedef struct s_rgb {
-	float	r;
-	float	g;
-	float	b;
+	double	r;
+	double	g;
+	double	b;
 }	t_rgb;
 
 typedef struct s_discrim {
-	float	a;
-	float	b;
-	float	c;
-	float	d;
-	float	t;
-	float	t1;
-	float	t2;
+	double	a;
+	double	b;
+	double	c;
+	double	d;
+	double	t;
+	double	t1;
+	double	t2;
 }	t_discrim;
 
 typedef struct s_raytrace {
 	t_vec	l;
-	float	nl_dot;
+	double	nl_dot;
 	t_vec	v;
 	t_vec	r;
-	float	vr_dot;
-	float	vr_dot_pow;
+	double	vr_dot;
+	double	vr_dot_pow;
 }	t_raytrace;
 
 typedef struct s_ray
@@ -61,7 +61,7 @@ typedef struct s_ray
 typedef struct s_sphere
 {
 	t_vec	center;
-	float	radius;
+	double	radius;
 }	t_sphere;
 
 typedef struct s_plane
@@ -81,7 +81,7 @@ typedef struct s_material
 	t_rgb	ambient_ref;
 	t_rgb	diffuse_ref;
 	t_rgb	specular_ref;
-	float	shininess;
+	double	shininess;
 }	t_material;
 
 typedef struct s_shape
@@ -110,7 +110,7 @@ typedef struct s_light
 
 typedef struct s_intersect
 {
-	float	distance;
+	double	distance;
 	t_vec	position;
 	t_vec	normal;
 }	t_intersect;

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:43:27 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 16:14:34 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	encode_rgb(uint8_t r, uint8_t g, uint8_t b)
 	return (r << 16 | g << 8 | b);
 }
 
-t_rgb	float_to_trgb(float r, float g, float b)
+t_rgb	double_to_trgb(double r, double g, double b)
 {
 	return ((t_rgb){
 		.r = r,
@@ -27,7 +27,7 @@ t_rgb	float_to_trgb(float r, float g, float b)
 	});
 }
 
-void	set_trgb(t_rgb *rgb, float r, float g, float b)
+void	set_trgb(t_rgb *rgb, double r, double g, double b)
 {
 	rgb->r = r;
 	rgb->g = g;

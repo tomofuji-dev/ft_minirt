@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:41:10 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:59:11 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 			rgb->b += shape->material.diffuse_ref.b * scene->lights[i].illuminance.b * vars.nl_dot;
 			if (vars.nl_dot > 0)
 			{
-				vars.r = diff_vec(constant_mul_vec(\
-									intp.normal, 2 * vars.nl_dot), vars.l);
+				vars.r = norm_vec(diff_vec(constant_mul_vec(\
+									intp.normal, 2 * vars.nl_dot), vars.l));
 				vars.v = norm_vec(constant_mul_vec(\
 										eye_ray->direction, -1));
 				vars.vr_dot = inner_product(vars.v, vars.r);

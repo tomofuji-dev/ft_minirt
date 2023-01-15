@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 17:51:23 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdio.h>
 
 bool				get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-									float max_dist, bool exit_once_found, \
+									double max_dist, bool exit_once_found, \
 									t_shape **out_shape, t_intersect *out_intp);
 bool				intersect(const t_shape *shape, const t_ray *ray, \
 								t_intersect *out_intp);
@@ -30,7 +30,7 @@ static t_discrim	intersect_sphere_discrim(const t_shape *shape, \
 												const t_ray *ray);
 
 bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-							float max_dist, bool exit_once_found, \
+							double max_dist, bool exit_once_found, \
 							t_shape **out_shape, t_intersect *out_intp)
 {
 	size_t		i;
@@ -101,8 +101,8 @@ static bool	intersect_plane(const t_shape *shape, const t_ray *ray, \
 						t_intersect *out_intp)
 {
 	const t_plane	*pln;
-	float			dn_dot;
-	float			t;
+	double			dn_dot;
+	double			t;
 	t_vec			s_p;
 
 	pln = &shape->u_data.plane;

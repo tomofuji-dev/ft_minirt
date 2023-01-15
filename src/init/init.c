@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:43:18 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:57:48 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void			init(t_env *env);
 static void		init_env(t_env *env);
 void			init_shape(t_shape *shape, t_shape_type st, ...);
 void			init_material(t_material *mat, \
-						float ambR, float ambG, float ambB, \
-						float difR, float difG, float difB, \
-						float speR, float speG, float speB, \
-						float shns);
+						double ambR, double ambG, double ambB, \
+						double difR, double difG, double difB, \
+						double speR, double speG, double speB, \
+						double shns);
 void			init_light(t_light *light, t_light_type lt, \
-						float vx, float vy, float vz, \
-						float illR, float illG, float illB);
+						double vx, double vy, double vz, \
+						double illR, double illG, double illB);
 void			scene_setting(t_scene *scene);
 
 void	init(t_env *env)
@@ -102,10 +102,10 @@ void	init_shape(t_shape *shape, t_shape_type st, ...)
 }
 
 void	init_material(t_material *mat,
-						float ambR, float ambG, float ambB,
-						float difR, float difG, float difB,
-						float speR, float speG, float speB,
-						float shns)
+						double ambR, double ambG, double ambB,
+						double difR, double difG, double difB,
+						double speR, double speG, double speB,
+						double shns)
 {
 	set_trgb(&mat->ambient_ref, ambR, ambG, ambB);
 	set_trgb(&mat->diffuse_ref, difR, difG, difB);
@@ -114,8 +114,8 @@ void	init_material(t_material *mat,
 }
 
 void	init_light(t_light *light, t_light_type lt,
-					float vx, float vy, float vz,
-					float illR, float illG, float illB)
+					double vx, double vy, double vz,
+					double illR, double illG, double illB)
 {
 	light->type = lt;
 	set_vec(&light->vector, vx, vy, vz);
@@ -142,18 +142,18 @@ void	scene_setting(t_scene *scene)
 				0.69, 0.00, 0.00, \
 				0.30, 0.30, 0.30, \
 				8.0);
-	// for (int i = 1; i < 16; i++)
-	// {
-	// 	init_shape(&scene->shapes[i], ST_SPHERE, \
-	// 				rand_range(-2.5, 2.5), rand_range(0, 2.0), rand_range(0, 20.0), \
-	// 				rand_range(0.25, 0.5));
-	// 	init_material(&scene->shapes[i].material, \
-	// 				0.1, 0.1, 0.1, \
-	// 				rand_range(0.5, 1.0), rand_range(0.5, 1.0), rand_range(0.5, 1.0), \
-	// 				rand_range(0.3, 0.5), rand_range(0.3, 0.5), rand_range(0.3, 0.5), \
-	// 				8.0);
-	// }
-	scene->num_shapes = 2;
+	for (int i = 1; i < 16; i++)
+	{
+		init_shape(&scene->shapes[i], ST_SPHERE, \
+					rand_range(-2.5, 2.5), rand_range(0, 2.0), rand_range(0, 20.0), \
+					rand_range(0.25, 0.5));
+		init_material(&scene->shapes[i].material, \
+					0.1, 0.1, 0.1, \
+					rand_range(0.5, 1.0), rand_range(0.5, 1.0), rand_range(0.5, 1.0), \
+					rand_range(0.3, 0.5), rand_range(0.3, 0.5), rand_range(0.3, 0.5), \
+					8.0);
+	}
+	scene->num_shapes = 16;
 	set_trgb(&scene->ambient_illuminance, 0.1, 0.1, 0.1);
 	scene->num_lights_capacity = 16;
 	scene->lights = malloc(sizeof(t_light) * scene->num_lights_capacity);
