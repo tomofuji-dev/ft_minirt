@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:57:48 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:02:34 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	scene_setting(t_scene *scene)
 				0.69, 0.00, 0.00, \
 				0.30, 0.30, 0.30, \
 				8.0);
-	for (int i = 1; i < 16; i++)
+	for (int i = 1; i < 100; i++)
 	{
 		init_shape(&scene->shapes[i], ST_SPHERE, \
 					rand_range(-2.5, 2.5), rand_range(0, 2.0), rand_range(0, 20.0), \
@@ -153,7 +153,7 @@ void	scene_setting(t_scene *scene)
 					rand_range(0.3, 0.5), rand_range(0.3, 0.5), rand_range(0.3, 0.5), \
 					8.0);
 	}
-	scene->num_shapes = 16;
+	scene->num_shapes = 100;
 	set_trgb(&scene->ambient_illuminance, 0.1, 0.1, 0.1);
 	scene->num_lights_capacity = 16;
 	scene->lights = malloc(sizeof(t_light) * scene->num_lights_capacity);

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:59:11 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:01:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 			}
 			i++;
 		}
-		rgb->r *= 255 * clamp(rgb->r, 0, 1);
-		rgb->g *= 255 * clamp(rgb->g, 0, 1);
-		rgb->b *= 255 * clamp(rgb->b, 0, 1);
+		rgb->r = 255 * clamp(rgb->r, 0, 1);
+		rgb->g = 255 * clamp(rgb->g, 0, 1);
+		rgb->b = 255 * clamp(rgb->b, 0, 1);
 		return (true);
 	}
 	return (false);
