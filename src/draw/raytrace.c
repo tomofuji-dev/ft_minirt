@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 19:01:49 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:02:20 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,25 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 		while (i < scene->num_lights)
 		{
 			if (scene->lights[i].type == LT_POINT)
+			{
 				vars.l = norm_vec(diff_vec(scene->lights[i].vector, \
 											intp.position));
+				vars.dl = abs_vec(diff_vec(scene->lights[i].vector, \
+											intp.position)) - EPSILON;
+			}
 			else if (scene->lights[i].type == LT_DIRECTIONAL)
+			{
 				vars.l = norm_vec(constant_mul_vec(\
 									scene->lights[i].vector, -1));
+				vars.dl = INFINITY;
+			}
+			vars.shadow_ray.start = add_vec(intp.position, constant_mul_vec(vars.l, EPSILON));
+			vars.shadow_ray.direction = vars.l;
+			if (get_nearest_shape(scene, &vars.shadow_ray, vars.dl, true, NULL, NULL))
+			{
+				i++;
+				continue;
+			}
 			vars.nl_dot = inner_product(intp.normal, vars.l);
 			vars.nl_dot = clamp(vars.nl_dot, 0, 1);
 			rgb->r += shape->material.diffuse_ref.r * scene->lights[i].illuminance.r * vars.nl_dot;
