@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 11:42:33 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:53:24 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,28 @@ void	scene_setting(t_scene *scene)
 	init_shape(&scene->shapes[1], ST_CYLINDER, \
 				0.0, 0.0, 10.0, \
 				0.5773, 0.5773, 0.5773, \
-				1.0, 2.0);
+				1.0, 5.0);
 	init_material(&scene->shapes[1].material, \
 				0.01, 0.01, 0.01, \
 				0.69, 0.00, 0.00, \
+				0.30, 0.30, 0.30, \
+				8.0);
+	init_shape(&scene->shapes[2], ST_CYLINDER, \
+				0.0, 0.0, 10.0, \
+				0.5773, 0.5773, -0.5773, \
+				1.0, 5.0);
+	init_material(&scene->shapes[2].material, \
+				0.01, 0.01, 0.01, \
+				0.00, 0.69, 0.00, \
+				0.30, 0.30, 0.30, \
+				8.0);
+	init_shape(&scene->shapes[3], ST_CYLINDER, \
+				0.0, 0.0, 10.0, \
+				0.5773, -0.5773, 0.5773, \
+				1.0, 5.0);
+	init_material(&scene->shapes[3].material, \
+				0.01, 0.01, 0.01, \
+				0.00, 0.00, 0.69, \
 				0.30, 0.30, 0.30, \
 				8.0);
 	// for (int i = 1; i < 16; i++)
@@ -175,7 +193,7 @@ void	scene_setting(t_scene *scene)
 	// 				rand_range(0.3, 0.5), rand_range(0.3, 0.5), rand_range(0.3, 0.5), \
 	// 				8.0);
 	// }
-	scene->num_shapes = 2;
+	scene->num_shapes = 4;
 	set_trgb(&scene->ambient_illuminance, 0.1, 0.1, 0.1);
 	scene->num_lights_capacity = 16;
 	scene->lights = malloc(sizeof(t_light) * scene->num_lights_capacity);
