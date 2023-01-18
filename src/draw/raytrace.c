@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/17 12:02:20 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:48:47 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 				vars.l = norm_vec(diff_vec(scene->lights[i].vector, \
 											intp.position));
 				vars.dl = abs_vec(diff_vec(scene->lights[i].vector, \
-											intp.position)) - EPSILON;
+											intp.position)) - C_EPSILON;
 			}
 			else if (scene->lights[i].type == LT_DIRECTIONAL)
 			{
@@ -44,7 +44,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 									scene->lights[i].vector, -1));
 				vars.dl = INFINITY;
 			}
-			vars.shadow_ray.start = add_vec(intp.position, constant_mul_vec(vars.l, EPSILON));
+			vars.shadow_ray.start = add_vec(intp.position, constant_mul_vec(vars.l, C_EPSILON));
 			vars.shadow_ray.direction = vars.l;
 			if (get_nearest_shape(scene, &vars.shadow_ray, vars.dl, true, NULL, NULL))
 			{

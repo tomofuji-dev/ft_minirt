@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/17 17:41:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:41:30 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,11 @@ static bool	intersect_cylinder(const t_shape *shape, const t_ray *ray, \
 	t_discrim			d;
 
 	d = intersect_cylinder_discrim(shape, ray);
-	if (intersect_cylinder_bottom(shape, ray, out_intp) && out_intp->distance < d.t)
-		return (true);
+	if (intersect_cylinder_bottom(shape, ray, out_intp))
+	{
+		if (d.t <= 0 || (d.t > 0 && out_intp->distance < d.t))
+			return (true);
+	}
 	cy = &shape->u_data.cylinder;
 	if (d.t > 0)
 	{
@@ -219,8 +222,8 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 
 	ret = false;
 	cy = &shape->u_data.cylinder;
-	s.u_data.plane.normal = cy->direction;
-	plane_pos = add_vec(cy->position, constant_mul_vec(cy->direction, cy->height / 2));
+	s.u_data.plane.normal = constant_mul_vec(cy->direction, -1);
+	plane_pos = add_vec(cy->position, constant_mul_vec(cy->direction, -1 * cy->height / 2));
 	s.u_data.plane.position = plane_pos;
 	if (intersect_plane(&s, ray, &intp) && \
 		abs_vec(diff_vec(intp.position, plane_pos)) <= cy->radius)
@@ -228,7 +231,8 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 		ret = true;
 		*out_intp = intp;
 	}
-	plane_pos = add_vec(cy->position, constant_mul_vec(cy->direction, -cy->height / 2));
+	s.u_data.plane.normal = cy->direction;
+	plane_pos = add_vec(cy->position, constant_mul_vec(cy->direction, cy->height / 2));
 	s.u_data.plane.position = plane_pos;
 	if (intersect_plane(&s, ray, &intp) && \
 		abs_vec(diff_vec(intp.position, plane_pos)) <= cy->radius)

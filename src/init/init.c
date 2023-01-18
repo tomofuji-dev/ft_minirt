@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/17 17:00:41 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:42:33 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +156,9 @@ void	scene_setting(t_scene *scene)
 	// 			0.30, 0.30, 0.30, \
 	// 			8.0);
 	init_shape(&scene->shapes[1], ST_CYLINDER, \
-				0.0, 0.0, 5.0, \
-				0.70710678, 0.0, 0.70710678, \
-				1.0, 5.0);
+				0.0, 0.0, 10.0, \
+				0.5773, 0.5773, 0.5773, \
+				1.0, 2.0);
 	init_material(&scene->shapes[1].material, \
 				0.01, 0.01, 0.01, \
 				0.69, 0.00, 0.00, \
@@ -180,7 +180,7 @@ void	scene_setting(t_scene *scene)
 	scene->num_lights_capacity = 16;
 	scene->lights = malloc(sizeof(t_light) * scene->num_lights_capacity);
 	init_light(&scene->lights[0], LT_POINT, \
-				-5.0, 5.0, -5.0, \
+				5.0, 5.0, -5.0, \
 				1.0, 1.0, 1.0);
 	scene->num_lights = 1;
 	scene->eye_pos = init_vec(0, 0, -5);

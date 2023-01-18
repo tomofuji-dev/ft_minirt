@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/17 14:00:58 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:48:31 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WINDOW_WIDTH 400
 # define WINDOW_HEIGHT 400
 # define WINDOW_TITLE "minirt"
-# define EPSILON 0.001
+# define C_EPSILON 0.002
 
 typedef struct s_vec {
 	double	x;
