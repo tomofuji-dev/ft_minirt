@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 10:48:31 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:26:38 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,17 @@ typedef struct s_scene
 	size_t	num_lights;
 	t_rgb	ambient_illuminance;
 	t_vec	eye_pos;
+	t_vec	eye_direction;
+	double	fov;
+	double	pixel_height;
+	double	pixel_width;
 }	t_scene;
 
 typedef struct s_env {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	double		window_width;
+	double		window_height;
 	void		*img_ptr;
 	char		*img_data;
 	int			bits_per_pixel;

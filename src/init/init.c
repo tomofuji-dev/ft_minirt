@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 11:53:24 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:29:20 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,22 @@ static void	init_env(t_env *env)
 	t_scene	*scene;
 
 	env->mlx_ptr = mlx_init();
+	env->window_width = WINDOW_WIDTH;
+	env->window_height = WINDOW_HEIGHT;
 	if (env->mlx_ptr == NULL)
 	{
 		perror("failed to init mlx");
 		exit(1);
 	}
-	env->win_ptr = mlx_new_window(env->mlx_ptr, WINDOW_WIDTH, \
-									WINDOW_HEIGHT, WINDOW_TITLE);
+	env->win_ptr = mlx_new_window(env->mlx_ptr, env->window_width, \
+									env->window_height, WINDOW_TITLE);
 	if (env->win_ptr == NULL)
 	{
 		mlx_destroy_display(env->mlx_ptr);
 		perror("failed to create new window");
 		exit(1);
 	}
-	env->img_ptr = mlx_new_image(env->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	env->img_ptr = mlx_new_image(env->mlx_ptr, env->window_width, env->window_height);
 	if (env->img_ptr == NULL)
 	{
 		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
@@ -201,5 +203,7 @@ void	scene_setting(t_scene *scene)
 				5.0, 5.0, -5.0, \
 				1.0, 1.0, 1.0);
 	scene->num_lights = 1;
-	scene->eye_pos = init_vec(0, 0, -5);
+	scene->eye_pos = init_vec(0, 1, -5);
+	scene->eye_direction = init_vec(0, 0, 1);
+	scene->fov = 50;
 }

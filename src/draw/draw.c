@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:35:43 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:23:57 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,17 @@ void	draw(t_env *env)
 	t_ray	eye_ray;
 	t_rgb	rgb;
 
+	env->scene->pixel_width = 2 * tan(env->scene->fov / 360 * M_PI) / env->window_width;
+	env->scene->pixel_height = env->scene->pixel_width \
+								* env->window_height / env->window_width;
 	y = 0;
-	while (y < WINDOW_HEIGHT)
+	while (y < env->window_height)
 	{
 		x = 0;
-		while (x < WINDOW_WIDTH)
+		while (x < env->window_width)
 		{
 			eye_ray.start = env->scene->eye_pos;
-			eye_ray.direction = diff_vec(screen_to_coord(x, y), eye_ray.start);
+			eye_ray.direction = diff_vec(screen_to_coord(env, x, y), eye_ray.start);
 			set_trgb(&rgb, 100, 149, 237);
 			raytrace(env->scene, &eye_ray, &rgb);
 			pixel_put(env, x, y, encode_trgb(rgb));
