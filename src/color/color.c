@@ -38,3 +38,10 @@ int	encode_trgb(t_rgb rgb)
 {
 	return ((int)rgb.r << 16 | (int)rgb.g << 8 | (int)rgb.b);
 }
+
+void	add_on_rgb(t_rgb *rgb, t_rgb ref, t_light light, double dot)
+{
+	rgb->r += ref.r * light.illuminance.r * dot;
+	rgb->g += ref.g * light.illuminance.g * dot;
+	rgb->b += ref.b * light.illuminance.b * dot;
+}
