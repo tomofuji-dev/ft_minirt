@@ -28,7 +28,8 @@ void	draw(t_env *env)
 	t_ray	eye_ray;
 	t_rgb	rgb;
 
-	env->scene->pixel_width = 2 * tan(env->scene->fov / 360 * M_PI) / env->window_width;
+	env->scene->pixel_width = 2 * tan(env->scene->fov / 360 * M_PI) \
+								/ env->window_width;
 	env->scene->pixel_height = env->scene->pixel_width \
 								* env->window_height / env->window_width;
 	y = 0;
@@ -38,7 +39,8 @@ void	draw(t_env *env)
 		while (x < env->window_width)
 		{
 			eye_ray.start = env->scene->eye_pos;
-			eye_ray.direction = diff_vec(screen_to_coord(env, x, y), eye_ray.start);
+			eye_ray.direction = diff_vec(screen_to_coord(env, x, y), \
+										eye_ray.start);
 			set_trgb(&rgb, 100, 149, 237);
 			raytrace(env->scene, &eye_ray, &rgb);
 			pixel_put(env, x, y, encode_trgb(rgb));
