@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 11:32:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 10:09:44 by tfujiwar         ###   ########.fr       */
+/*   Created: 2022/10/16 11:37:49 by tfujiwar          #+#    #+#             */
+/*   Updated: 2023/01/20 10:07:09 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strchr(const char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	while (*s || c == 0)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	return (NULL);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 128
+
+#  include <unistd.h>
+#  include <stdlib.h>
+
+char	*get_next_line(int fd);
+
+# endif
+#endif
