@@ -17,9 +17,6 @@
 #include <math.h>
 #include <stdio.h>
 
-bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-							t_info info, t_shape **out_shape, \
-							t_intersect *out_intp);
 bool				intersect(const t_shape *shape, const t_ray *ray, \
 								t_intersect *out_intp);
 static bool			intersect_sphere(const t_shape *shape, const t_ray *ray, \
@@ -37,8 +34,7 @@ static bool			intersect_cylinder_bottom(const t_shape *shape, \
 static void			process_discrim(t_discrim *d);
 
 bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-							t_info info, t_shape **out_shape, \
-							t_intersect *out_intp)
+							t_info info, t_shape_intp *shape_intp)
 {
 	size_t		i;
 	t_shape		*nearest_shape;
@@ -62,10 +58,11 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 	}
 	if (nearest_shape)
 	{
-		if (out_shape)
-			*out_shape = nearest_shape;
-		if (out_intp)
-			*out_intp = nearest_intp;
+		if (info.out_needed)
+		{
+			shape_intp->shape = nearest_shape;
+			shape_intp->intp = nearest_intp;
+		}
 		return (true);
 	}
 	return (false);
