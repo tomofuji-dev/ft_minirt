@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   strtod.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:47:15 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/19 13:58:10 by t.fuji           ###   ########.fr       */
+/*   Updated: 2023/01/20 10:58:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strtod.h"
+#include "utils.h"
 #include "libft.h"
 
 bool			rt_strtod(const char *string, double *out_d);
@@ -129,4 +129,3 @@ static double	strtod_exp_frac(t_strtod *sd)
 	else
 		return (sd->fraction * sd->exp);
 }
-

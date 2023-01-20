@@ -21,7 +21,6 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/init.c \
-				$(SRC_DIR)/parse/strtod.c \
 				$(SRC_DIR)/hook/setup_hook.c \
 				$(SRC_DIR)/hook/handle_key.c \
 				$(SRC_DIR)/hook/handle_loop.c \
@@ -31,7 +30,9 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/math/vec.c \
-				$(SRC_DIR)/math/utils.c
+				$(SRC_DIR)/math/utils.c \
+				$(SRC_DIR)/utils/strtod.c \
+				$(SRC_DIR)/utils/utils.c
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.d)
 .PHONY: $(DEPS)

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtod.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:39:02 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/19 13:50:27 by t.fuji           ###   ########.fr       */
+/*   Updated: 2023/01/20 11:12:40 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRTOD_H
-# define STRTOD_H
+#ifndef UTILS_H
+# define UTILS_H
 
 # include <stdbool.h>
 
@@ -29,5 +29,6 @@ typedef struct s_strtod {
 }	t_strtod;
 
 bool	rt_strtod(const char *string, double *out_d);
+void	perror_exit(const char *msg);
 
 #endif

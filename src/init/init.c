@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 13:29:20 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:15:08 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,59 @@
 #include "minirt.h"
 #include "color.h"
 #include "math_utils.h"
+#include "utils.h"
 #include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <stdarg.h>
 
-void			init(t_env *env);
-static void		init_env(t_env *env);
-void			init_shape(t_shape *shape, t_shape_type st, ...);
-void			init_material(t_material *mat, \
+void	init_scene(t_env *env, char *rt_file);
+void	init_mlx(t_env *env);
+
+void	init_shape(t_shape *shape, t_shape_type st, ...);
+void	init_material(t_material *mat, \
 						double ambR, double ambG, double ambB, \
 						double difR, double difG, double difB, \
 						double speR, double speG, double speB, \
 						double shns);
-void			init_light(t_light *light, t_light_type lt, \
+void	init_light(t_light *light, t_light_type lt, \
 						double vx, double vy, double vz, \
 						double illR, double illG, double illB);
-void			scene_setting(t_scene *scene);
+void	scene_setting(t_scene *scene);
 
-void	init(t_env *env)
+
+void	init_mlx(t_env *env)
 {
-	init_env(env);
-}
-
-static void	init_env(t_env *env)
-{
-	t_scene	*scene;
-
 	env->mlx_ptr = mlx_init();
 	env->window_width = WINDOW_WIDTH;
 	env->window_height = WINDOW_HEIGHT;
 	if (env->mlx_ptr == NULL)
-	{
-		perror("failed to init mlx");
-		exit(1);
-	}
+		perror_exit("failed to init mlx");
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->window_width, \
 									env->window_height, WINDOW_TITLE);
 	if (env->win_ptr == NULL)
 	{
 		mlx_destroy_display(env->mlx_ptr);
-		perror("failed to create new window");
-		exit(1);
+		perror_exit("failed to create new window");
 	}
 	env->img_ptr = mlx_new_image(env->mlx_ptr, env->window_width, env->window_height);
 	if (env->img_ptr == NULL)
 	{
 		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 		mlx_destroy_display(env->mlx_ptr);
-		perror("failed to create new window");
-		exit(1);
+		perror_exit("failed to create new img");
 	}
 	env->img_data = mlx_get_data_addr(env->img_ptr, &env->bits_per_pixel, \
 										&env->bytes_per_line, &env->endian);
 	env->bytes_per_pixel = env->bits_per_pixel / 8;
+}
+
+void	init_scene(t_env *env, char *rt_file)
+{
+	t_scene	*scene;
+
+	(void) rt_file;
 	scene = malloc(sizeof(t_scene));
 	scene_setting(scene);
 	env->scene = scene;

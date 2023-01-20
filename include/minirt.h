@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 13:26:38 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:21:45 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <stdint.h>
+
+# define RETURN_SUCCESS 0
+# define RETURN_FAILURE 1
 
 # define WINDOW_WIDTH 400
 # define WINDOW_HEIGHT 400
@@ -107,6 +110,7 @@ typedef struct s_shape
 		t_cylinder	cylinder;
 	}	u_data;
 	t_material		material;
+	struct s_shape	*next;
 }	t_shape;
 
 typedef enum e_light_type
@@ -120,6 +124,7 @@ typedef struct s_light
 	t_light_type	type;
 	t_vec			vector;
 	t_rgb			illuminance;
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_intersect
