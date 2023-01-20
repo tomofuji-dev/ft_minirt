@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 11:37:49 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 10:07:09 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:38:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 #  include <unistd.h>
 #  include <stdlib.h>
+#  include <stdbool.h>
 
-char	*get_next_line(int fd);
+bool	get_next_line(int fd, char **line);
 
 # endif
 #endif
