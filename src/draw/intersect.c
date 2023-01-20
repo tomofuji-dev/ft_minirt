@@ -17,9 +17,9 @@
 #include <math.h>
 #include <stdio.h>
 
-bool				get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-									double max_dist, bool exit_once_found, \
-									t_shape **out_shape, t_intersect *out_intp);
+bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
+							t_info info, t_shape **out_shape, \
+							t_intersect *out_intp);
 bool				intersect(const t_shape *shape, const t_ray *ray, \
 								t_intersect *out_intp);
 static bool			intersect_sphere(const t_shape *shape, const t_ray *ray, \
@@ -37,8 +37,8 @@ static bool			intersect_cylinder_bottom(const t_shape *shape, \
 static void			process_discrim(t_discrim *d);
 
 bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-							double max_dist, bool exit_once_found, \
-							t_shape **out_shape, t_intersect *out_intp)
+							t_info info, t_shape **out_shape, \
+							t_intersect *out_intp)
 {
 	size_t		i;
 	t_shape		*nearest_shape;
@@ -46,7 +46,7 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 	t_intersect	intp;
 
 	nearest_shape = NULL;
-	nearest_intp.distance = max_dist;
+	nearest_intp.distance = info.max_dist;
 	i = 0;
 	while (i < scene->num_shapes)
 	{
@@ -55,7 +55,7 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 		{
 			nearest_shape = &scene->shapes[i];
 			nearest_intp = intp;
-			if (exit_once_found)
+			if (info.exit_once_found)
 				break ;
 		}
 		i++;
@@ -237,7 +237,7 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 	if (intersect_plane(&s, ray, &intp) && \
 		abs_vec(diff_vec(intp.position, plane_pos)) <= cy->radius)
 	{
-		if (!ret || (ret && intp.distance < out_intp->distance))
+		if (!ret || intp.distance < out_intp->distance)
 		{
 			ret = true;
 			*out_intp = intp;
@@ -260,5 +260,4 @@ static void	process_discrim(t_discrim *d)
 		if (d->t2 > 0 && d->t2 < d->t)
 			d->t = d->t2;
 	}
-	return ;
 }
