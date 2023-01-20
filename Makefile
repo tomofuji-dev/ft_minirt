@@ -20,7 +20,12 @@ RM			=	rm
 CFLAGS		=	-Wall -Wextra -Werror
 
 SRCS		=	$(SRC_DIR)/main.c \
-				$(SRC_DIR)/init/init.c \
+				$(SRC_DIR)/init/init_is_valid.c \
+				$(SRC_DIR)/init/init_light.c \
+				$(SRC_DIR)/init/init_mlx.c \
+				$(SRC_DIR)/init/init_scene.c \
+				$(SRC_DIR)/init/init_shape.c \
+				$(SRC_DIR)/init/init_utils.c \
 				$(SRC_DIR)/hook/setup_hook.c \
 				$(SRC_DIR)/hook/handle_key.c \
 				$(SRC_DIR)/hook/handle_loop.c \
@@ -31,7 +36,9 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/math/vec.c \
 				$(SRC_DIR)/math/utils.c \
-				$(SRC_DIR)/utils/strtod.c \
+				$(SRC_DIR)/utils/rt_strtod.c \
+				$(SRC_DIR)/utils/rt_atoi.c \
+				$(SRC_DIR)/utils/rt_split.c \
 				$(SRC_DIR)/utils/utils.c
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.d)

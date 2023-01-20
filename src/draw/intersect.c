@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 11:41:30 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:30:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 							double max_dist, bool exit_once_found, \
 							t_shape **out_shape, t_intersect *out_intp)
 {
-	size_t		i;
 	t_shape		*nearest_shape;
 	t_intersect	nearest_intp;
 	t_intersect	intp;
+	t_shape		*shape;
 
 	nearest_shape = NULL;
 	nearest_intp.distance = max_dist;
-	i = 0;
-	while (i < scene->num_shapes)
+	shape = scene->shape;
+	while (shape != NULL)
 	{
-		if (intersect(&scene->shapes[i], ray, &intp) && \
+		if (intersect(shape, ray, &intp) && \
 			intp.distance < nearest_intp.distance)
 		{
-			nearest_shape = &scene->shapes[i];
+			nearest_shape = shape;
 			nearest_intp = intp;
 			if (exit_once_found)
 				break ;
 		}
-		i++;
+		shape = shape->next;
 	}
 	if (nearest_shape)
 	{

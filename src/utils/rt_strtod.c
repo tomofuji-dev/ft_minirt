@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtod.c                                           :+:      :+:    :+:   */
+/*   rt_strtod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:47:15 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/20 10:58:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:04:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
 
-bool			rt_strtod(const char *string, double *out_d);
+bool			rt_strtod(const char *string, double *out);
 static bool		strtod_count_digits(const char *string, t_strtod *sd);
 static bool		strtod_get_frac(t_strtod *sd);
 static int		strtod_frac_splited(t_strtod *sd, int mant_size_limit);
 static double	strtod_exp_frac(t_strtod *sd);
 
-bool	rt_strtod(const char *string, double *out_d)
+bool	rt_strtod(const char *string, double *out)
 {
 	t_strtod	sd;
 
@@ -28,9 +28,9 @@ bool	rt_strtod(const char *string, double *out_d)
 		return (false);
 	if (!strtod_get_frac(&sd))
 		return (false);
-	*out_d = strtod_exp_frac(&sd);
+	*out = strtod_exp_frac(&sd);
 	if (sd.sign)
-		*out_d *= -1;
+		*out *= -1;
 	return (true);
 }
 
