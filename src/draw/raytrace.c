@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:33:13 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:43:46 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 	t_intersect	intp;
 	t_light		*light;
 	t_raytrace	vars;
+	t_info		info;
 
-	if (get_nearest_shape(scene, eye_ray, INFINITY, false, &shape, &intp))
+	info.max_dist = INFINITY;
+	info.exit_once_found = false;
+	if (get_nearest_shape(scene, eye_ray, info, &shape, &intp))
 	{
 		rgb->r = scene->ambient_illuminance.r * shape->material.ambient_ref.r;
 		rgb->g = scene->ambient_illuminance.g * shape->material.ambient_ref.g;
@@ -47,7 +50,9 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 			}
 			vars.shadow_ray.start = add_vec(intp.position, constant_mul_vec(vars.l, C_EPSILON));
 			vars.shadow_ray.direction = vars.l;
-			if (get_nearest_shape(scene, &vars.shadow_ray, vars.dl, true, NULL, NULL))
+			info.max_dist = vars.dl;
+			info.exit_once_found = true;
+			if (get_nearest_shape(scene, &vars.shadow_ray, info, NULL, NULL))
 			{
 				light = light->next;
 				continue ;

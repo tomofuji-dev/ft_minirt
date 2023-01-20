@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:30:49 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:44:42 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include <math.h>
 #include <stdio.h>
 
-bool				get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-									double max_dist, bool exit_once_found, \
-									t_shape **out_shape, t_intersect *out_intp);
+bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
+							t_info info, t_shape **out_shape, \
+							t_intersect *out_intp);
 bool				intersect(const t_shape *shape, const t_ray *ray, \
 								t_intersect *out_intp);
 static bool			intersect_sphere(const t_shape *shape, const t_ray *ray, \
@@ -37,8 +37,8 @@ static bool			intersect_cylinder_bottom(const t_shape *shape, \
 static void			process_discrim(t_discrim *d);
 
 bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-							double max_dist, bool exit_once_found, \
-							t_shape **out_shape, t_intersect *out_intp)
+							t_info info, t_shape **out_shape, \
+							t_intersect *out_intp)
 {
 	t_shape		*nearest_shape;
 	t_intersect	nearest_intp;
@@ -55,7 +55,7 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 		{
 			nearest_shape = shape;
 			nearest_intp = intp;
-			if (exit_once_found)
+			if (info.exit_once_found)
 				break ;
 		}
 		shape = shape->next;
@@ -237,7 +237,7 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 	if (intersect_plane(&s, ray, &intp) && \
 		abs_vec(diff_vec(intp.position, plane_pos)) <= cy->radius)
 	{
-		if (!ret || (ret && intp.distance < out_intp->distance))
+		if (!ret || intp.distance < out_intp->distance)
 		{
 			ret = true;
 			*out_intp = intp;
@@ -260,5 +260,4 @@ static void	process_discrim(t_discrim *d)
 		if (d->t2 > 0 && d->t2 < d->t)
 			d->t = d->t2;
 	}
-	return ;
 }
