@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:44:42 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:18:01 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include <math.h>
 #include <stdio.h>
 
-bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
-							t_info info, t_shape **out_shape, \
-							t_intersect *out_intp);
+bool				get_nearest_shape(const t_scene *scene, const t_ray *ray, \
+										t_info info, t_shape **out_shape, \
+										t_intersect *out_intp);
 bool				intersect(const t_shape *shape, const t_ray *ray, \
 								t_intersect *out_intp);
 static bool			intersect_sphere(const t_shape *shape, const t_ray *ray, \
@@ -46,7 +46,7 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 	t_shape		*shape;
 
 	nearest_shape = NULL;
-	nearest_intp.distance = max_dist;
+	nearest_intp.distance = info.max_dist;
 	shape = scene->shape;
 	while (shape != NULL)
 	{
