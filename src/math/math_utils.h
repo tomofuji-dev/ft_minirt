@@ -24,9 +24,9 @@ double	sum_of_squares(t_vec v);
 double	abs_vec(t_vec v);
 t_vec	constant_mul_vec(t_vec v, double c);
 
-double	min(double x, double y);
-double	max(double x, double y);
-double	clamp(double f, double min, double max);
+double	ft_min(double x, double y);
+double	ft_max(double x, double y);
+double	ft_clamp(double f, double min, double max);
 double	rand_range(double a, double b);
 
 #endif

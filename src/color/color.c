@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "color.h"
-#include "minirt.h"
+#include "math_utils.h"
 
 int	encode_rgb(uint8_t r, uint8_t g, uint8_t b)
 {
@@ -44,4 +44,18 @@ void	add_on_rgb(t_rgb *rgb, t_rgb ref, t_light light, double dot)
 	rgb->r += ref.r * light.illuminance.r * dot;
 	rgb->g += ref.g * light.illuminance.g * dot;
 	rgb->b += ref.b * light.illuminance.b * dot;
+}
+
+void	multiple_rgb(t_rgb *product, t_rgb rgb1, t_rgb rgb2)
+{
+	product->r = rgb1.r * rgb2.r;
+	product->g = rgb1.g * rgb2.g;
+	product->b = rgb1.b * rgb2.b;
+}
+
+void	clamp_mul_rgb(t_rgb *rgb, double n)
+{
+	rgb->r = n * ft_clamp(rgb->r, 0, 1);
+	rgb->g = n * ft_clamp(rgb->g, 0, 1);
+	rgb->b = n * ft_clamp(rgb->b, 0, 1);
 }

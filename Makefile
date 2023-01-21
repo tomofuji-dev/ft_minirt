@@ -31,6 +31,8 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/hook/handle_loop.c \
 				$(SRC_DIR)/draw/draw.c \
 				$(SRC_DIR)/draw/intersect.c \
+				$(SRC_DIR)/draw/intersect_sphere.c \
+				$(SRC_DIR)/draw/intersect_cylinder.c \
 				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/math/vec.c \

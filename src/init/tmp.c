@@ -31,7 +31,7 @@ void	scene_setting(t_scene *scene)
 	// 			0.69, 0.00, 0.00, \
 	// 			0.30, 0.30, 0.30, \
 	// 			8.0);
-	init_shape(&scene->shapes[1], ST_CYLINDER, \
+	/*init_shape(&scene->shapes[1], ST_CYLINDER, \
 				0.0, 0.0, 10.0, \
 				0.5773, 0.5773, 0.5773, \
 				1.0, 5.0);
@@ -57,19 +57,19 @@ void	scene_setting(t_scene *scene)
 				0.01, 0.01, 0.01, \
 				0.00, 0.00, 0.69, \
 				0.30, 0.30, 0.30, \
-				8.0);
-	// for (int i = 1; i < 16; i++)
-	// {
-	// 	init_shape(&scene->shapes[i], ST_SPHERE, \
-	// 				rand_range(-2.5, 2.5), rand_range(0, 2.0), rand_range(0, 20.0), \
-	// 				rand_range(0.25, 0.5));
-	// 	init_material(&scene->shapes[i].material, \
-	// 				0.1, 0.1, 0.1, \
-	// 				rand_range(0.5, 1.0), rand_range(0.5, 1.0), rand_range(0.5, 1.0), \
-	// 				rand_range(0.3, 0.5), rand_range(0.3, 0.5), rand_range(0.3, 0.5), \
-	// 				8.0);
-	// }
-	scene->num_shapes = 4;
+				8.0);*/
+	 for (int i = 1; i < 16; i++)
+	 {
+	 	init_shape(&scene->shapes[i], ST_SPHERE, \
+	 				rand_range(-2.5, 2.5), rand_range(0, 2.0), rand_range(0, 20.0), \
+	 				rand_range(0.25, 0.5));
+	 	init_material(&scene->shapes[i].material, \
+	 				0.1, 0.1, 0.1, \
+	 				rand_range(0.5, 1.0), rand_range(0.5, 1.0), rand_range(0.5, 1.0), \
+	 				rand_range(0.3, 0.5), rand_range(0.3, 0.5), rand_range(0.3, 0.5), \
+	 				8.0);
+	 }
+	scene->num_shapes = 16;
 	set_trgb(&scene->ambient_illuminance, 0.1, 0.1, 0.1);
 	scene->num_lights_capacity = 16;
 	scene->lights = malloc(sizeof(t_light) * scene->num_lights_capacity);
