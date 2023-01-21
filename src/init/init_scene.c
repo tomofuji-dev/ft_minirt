@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:38:13 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:40:01 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	init_scene(t_env *env, char *rt_file)
 	if (fd < 0)
 		perror_exit("invalid fd");
 	scene = ft_calloc(1, sizeof(t_scene));
+	scene->ambient_light_is_already_exist = false;
+	scene->camera_is_already_exist = false;
 	if (scene == NULL)
 		perror_exit("failed to malloc scene");
 	errno = 0;

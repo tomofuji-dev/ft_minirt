@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 11:37:33 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 10:41:53 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:28:43 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	split_next_line(char **save_p, char **buff_p, char **line_p)
 	}
 	free(*save_p);
 	*save_p = ft_strdup(new_line_pos + 1);
-	*(new_line_pos + 1) = '\0';
+	*(new_line_pos) = '\0';
 	*line_p = ft_strdup(save_plus_buff);
 	free(save_plus_buff);
 }

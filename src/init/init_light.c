@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 12:14:24 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:39:12 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:38:52 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	init_ambient_light(t_scene *scene, char ***splited)
 	if (!is_valid_rgb(splited[2], &rgb))
 		return (false);
 	scene->ambient_illuminance = calc_rgb_ratio(rgb, ambient_light_ratio);
-	scene->camera_is_already_exist = true;
+	scene->ambient_light_is_already_exist = true;
 	return (true);
 }
 
@@ -70,7 +70,7 @@ bool	init_light(t_scene *scene, char ***splited)
 bool	init_camera(t_scene *scene, char ***splited)
 {
 	const size_t	tp_len = 4;
-	const size_t		dp_lens[4] = {1, 3, 3, 1};
+	const size_t	dp_lens[4] = {1, 3, 3, 1};
 	int				fov;
 
 	if (scene->camera_is_already_exist)

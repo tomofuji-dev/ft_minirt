@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:24:29 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:42:57 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <stdint.h>
+# include <stdio.h>
 
 # define RETURN_SUCCESS 0
 # define RETURN_FAILURE 1
@@ -137,11 +138,7 @@ typedef struct s_intersect
 typedef struct s_scene
 {
 	t_shape	*shape;
-	size_t	num_shapes_capacity;
-	size_t	num_shapes;
 	t_light	*light;
-	size_t	num_lights_capacity;
-	size_t	num_lights;
 	t_rgb	ambient_illuminance;
 	t_vec	eye_pos;
 	t_vec	eye_direction;
