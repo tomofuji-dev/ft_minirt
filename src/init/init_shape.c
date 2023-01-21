@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:25:25 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:25:10 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	init_sphere(t_scene *scene, char ***splited)
 	if (!append_shape(scene))
 		return (false);
 	shape = lst_last_shape(scene->shape);
+	shape->type = ST_SPHERE;
 	sph = &shape->u_data.sphere;
 	if (!is_valid_vec(splited[1], &sph->center, false))
 		return (false);
@@ -58,6 +59,7 @@ bool	init_plane(t_scene *scene, char ***splited)
 	if (!append_shape(scene))
 		return (false);
 	shape = lst_last_shape(scene->shape);
+	shape->type = ST_PLANE;
 	pl = &shape->u_data.plane;
 	if (!is_valid_vec(splited[1], &pl->position, false))
 		return (false);
@@ -83,6 +85,7 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 	if (!append_shape(scene))
 		return (false);
 	shape = lst_last_shape(scene->shape);
+	shape->type = ST_CYLINDER;
 	cy = &shape->u_data.cylinder;
 	if (!is_valid_vec(splited[1], &cy->position, false))
 		return (false);
