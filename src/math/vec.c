@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:32:57 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/17 11:51:09 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:54:36 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_vec	add_vec(t_vec v1, t_vec v2);
 t_vec	diff_vec(t_vec v1, t_vec v2);
 t_vec	norm_vec(t_vec v);
 double	inner_product(t_vec v1, t_vec v2);
+t_vec	outer_product(t_vec v1, t_vec v2);
 double	sum_of_squares(t_vec v);
 double	abs_vec(t_vec v);
 t_vec	constant_mul_vec(t_vec v, double c);
@@ -71,6 +72,15 @@ t_vec	norm_vec(t_vec v)
 double	inner_product(t_vec v1, t_vec v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
+
+t_vec	outer_product(t_vec v1, t_vec v2)
+{
+	return ((t_vec){
+		.x = v1.y * v2.z - v1.z * v2.y,
+		.y = v1.z * v2.x - v1.x * v2.z,
+		.z = v1.x * v2.y - v1.y * v2.x,
+	});
 }
 
 double	sum_of_squares(t_vec v)

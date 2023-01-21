@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:37:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 13:30:01 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:58:50 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ bool	is_valid_vec(char **str, t_vec *vec, bool norm)
 	vec->y = vec_ls[1];
 	vec->z = vec_ls[2];
 	if (norm)
+	{
+		if (sum_of_squares(*vec) == 0)
+			return (false);
 		*vec = norm_vec(*vec);
+	}
 	return (true);
 }

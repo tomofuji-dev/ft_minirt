@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 16:43:35 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:55:23 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ void	init_scene(t_env *env, char *rt_file)
 		scene->u.x = -1 * scene->c.y / sqrt(pow(scene->c.x, 2) + pow(scene->c.y, 2));
 		scene->u.y = scene->c.x / sqrt(pow(scene->c.x, 2) + pow(scene->c.y, 2));
 		scene->u.z = 0;
-		scene->v.x = -1 * scene->u.y;
-		scene->v.y = scene->u.x;
-		scene->v.z = 0;
+		scene->v = outer_product(scene->eye_direction, scene->u);
 	}
 }
 
