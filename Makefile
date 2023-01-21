@@ -30,7 +30,6 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/hook/handle_key.c \
 				$(SRC_DIR)/hook/handle_loop.c \
 				$(SRC_DIR)/draw/draw.c \
-				$(SRC_DIR)/draw/util.c \
 				$(SRC_DIR)/draw/intersect.c \
 				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/color/color.c \

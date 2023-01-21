@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 13:40:01 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:43:35 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,31 @@ void	init_scene(t_env *env, char *rt_file)
 		free_scene(scene);
 		perror_exit("error in gnl");
 	}
+	if (!(scene->ambient_light_is_already_exist \
+		&& scene->camera_is_already_exist))
+	{
+		free_scene(scene);
+		perror_exit("no ambient light or camera");
+	}
 	env->scene = scene;
+	env->window_width = WINDOW_WIDTH;
+	env->window_height = WINDOW_HEIGHT;
+	scene->c = constant_mul_vec(scene->eye_direction, \
+						env->window_width / (2 * tan(scene->fov / 360 * M_PI)));
+	if (scene->c.x == 0 && scene->c.y == 0)
+	{
+		scene->u = init_vec(1.0, 0.0, 0.0);
+		scene->v = init_vec(0.0, 1.0, 0.0);
+	}
+	else
+	{
+		scene->u.x = -1 * scene->c.y / sqrt(pow(scene->c.x, 2) + pow(scene->c.y, 2));
+		scene->u.y = scene->c.x / sqrt(pow(scene->c.x, 2) + pow(scene->c.y, 2));
+		scene->u.z = 0;
+		scene->v.x = -1 * scene->u.y;
+		scene->v.y = scene->u.x;
+		scene->v.z = 0;
+	}
 }
 
 static bool	scene_setting(t_scene *scene, char *line)

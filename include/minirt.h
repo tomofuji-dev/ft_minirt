@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 13:42:57 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 15:38:58 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,9 @@ typedef struct s_scene
 	t_vec	eye_pos;
 	t_vec	eye_direction;
 	double	fov;
-	double	pixel_height;
-	double	pixel_width;
+	t_vec	c;
+	t_vec	u;
+	t_vec	v;
 	bool	ambient_light_is_already_exist;
 	bool	camera_is_already_exist;
 }	t_scene;
