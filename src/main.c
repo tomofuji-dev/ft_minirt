@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 14:03:36 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 15:13:20 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,40 @@ void	print_sphere(t_sphere *sphere)
 	printf("radius: %lf\n", sphere->radius);
 }
 
+void	print_plane(t_plane *plane)
+{
+	printf("normal: ");
+	print_vec(&plane->normal);
+	printf("position: ");
+	print_vec(&plane->position);
+}
+
+void	print_cylinder(t_cylinder *cylinder)
+{
+	printf("position: ");
+	print_vec(&cylinder->position);
+	printf("direction: ");
+	print_vec(&cylinder->direction);
+	printf("radius: %lf\n", cylinder->radius);
+	printf("height: %lf\n", cylinder->height);
+}
+
 void	print_shape(t_shape *shape)
 {
 	if (shape->type == ST_SPHERE)
 	{
 		printf("type: sphere\n");
 		print_sphere(&shape->u_data.sphere);
+	}
+	else if (shape->type == ST_PLANE)
+	{
+		printf("type: plane\n");
+		print_plane(&shape->u_data.plane);
+	}
+	else if (shape->type == ST_CYLINDER)
+	{
+		printf("type: cylinder\n");
+		print_cylinder(&shape->u_data.cylinder);
 	}
 }
 
