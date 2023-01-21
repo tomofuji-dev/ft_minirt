@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 11:15:28 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:22:38 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,24 @@
 
 void	init_scene(t_env *env, char *rt_file);
 void	init_mlx(t_env *env);
+
+bool	init_ambient_light(t_scene *scene, char ***splited);
+bool	init_light(t_scene *scene, char ***splited);
+bool	init_camera(t_scene *scene, char ***splited);
+
+bool	init_sphere(t_scene *scene, char ***splited);
+bool	init_plane(t_scene *scene, char ***splited);
+bool	init_cylinder(t_scene *scene, char ***splited);
+
+bool	is_valid_format(char ***splited, \
+						const size_t tp_len, const size_t dp_lens[]);
+bool	is_valid_rgb(char **str, t_rgb *rgb);
+bool	is_valid_vec(char **str, t_vec *vec, bool norm);
+
+t_rgb	calc_rgb_ratio(t_rgb rgb, double ratio);
+bool	append_light(t_scene *scene);
+bool	append_shape(t_scene *scene);
+t_light	*lst_last_light(t_light *light);
+t_shape	*lst_last_shape(t_shape *shape);
 
 #endif

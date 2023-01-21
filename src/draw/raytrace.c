@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 10:48:47 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:43:46 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,28 @@ static void	set_info(t_info *info, double max_dist, \
 bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 {
 	t_shape_intp	shape_intp;
-	size_t			i;
-	t_raytrace		vars;
-	t_info			info;
+	t_light		*light;
+	t_raytrace	vars;
+	t_info		info;
 
 	set_info(&info, INFINITY, false, true);
 	if (get_nearest_shape(scene, eye_ray, info, &shape_intp))
 	{
 		multiple_rgb(rgb, scene->ambient_illuminance, shape_intp.shape->material.ambient_ref);
-		i = 0;
-		while (i < scene->num_lights)
+		light = scene->light;
+		while (light != NULL)
 		{
-			if (scene->lights[i].type == LT_POINT)
+			if (light->type == LT_POINT)
 			{
-				vars.l = norm_vec(diff_vec(scene->lights[i].vector, \
+				vars.l = norm_vec(diff_vec(light->vector, \
 											shape_intp.intp.position));
-				vars.dl = abs_vec(diff_vec(scene->lights[i].vector, \
+				vars.dl = abs_vec(diff_vec(light->vector, \
 											shape_intp.intp.position)) - C_EPSILON;
 			}
-			else if (scene->lights[i].type == LT_DIRECTIONAL)
+			else if (light->type == LT_DIRECTIONAL)
 			{
 				vars.l = norm_vec(constant_mul_vec(\
-									scene->lights[i].vector, -1));
+									light->vector, -1));
 				vars.dl = INFINITY;
 			}
 			vars.shadow_ray.start = add_vec(shape_intp.intp.position, constant_mul_vec(vars.l, C_EPSILON));
@@ -51,12 +51,12 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 			set_info(&info, vars.dl, true, false);
 			if (get_nearest_shape(scene, &vars.shadow_ray, info, &shape_intp))
 			{
-				i++;
+				light = light->next;
 				continue ;
 			}
 			vars.nl_dot = inner_product(shape_intp.intp.normal, vars.l);
 			vars.nl_dot = ft_clamp(vars.nl_dot, 0, 1);
-			add_on_rgb(rgb, shape_intp.shape->material.diffuse_ref, scene->lights[i], vars.nl_dot);
+			add_on_rgb(rgb, shape_intp.shape->material.diffuse_ref, *light, vars.nl_dot);
 			if (vars.nl_dot > 0)
 			{
 				vars.r = norm_vec(diff_vec(constant_mul_vec(\
@@ -66,9 +66,9 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 				vars.vr_dot = inner_product(vars.v, vars.r);
 				vars.vr_dot = ft_clamp(vars.vr_dot, 0, 1);
 				vars.vr_dot_pow = pow(vars.vr_dot, shape_intp.shape->material.shininess);
-				add_on_rgb(rgb, shape_intp.shape->material.specular_ref, scene->lights[i], vars.vr_dot_pow);
+				add_on_rgb(rgb, shape_intp.shape->material.specular_ref, *light, vars.vr_dot_pow);
 			}
-			i++;
+			light = light->next;
 		}
 		clamp_mul_rgb(rgb, 255);
 		return (true);

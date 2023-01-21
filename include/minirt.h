@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 11:21:45 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 15:38:58 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 # include <stdint.h>
+# include <stdio.h>
 
 # define RETURN_SUCCESS 0
 # define RETURN_FAILURE 1
@@ -81,8 +82,8 @@ typedef struct s_cylinder
 {
 	t_vec	position;
 	t_vec	direction;
-	float	radius;
-	float	height;
+	double	radius;
+	double	height;
 }	t_cylinder;
 
 typedef enum e_shape
@@ -136,18 +137,17 @@ typedef struct s_intersect
 
 typedef struct s_scene
 {
-	t_shape	*shapes;
-	size_t	num_shapes_capacity;
-	size_t	num_shapes;
-	t_light	*lights;
-	size_t	num_lights_capacity;
-	size_t	num_lights;
+	t_shape	*shape;
+	t_light	*light;
 	t_rgb	ambient_illuminance;
 	t_vec	eye_pos;
 	t_vec	eye_direction;
 	double	fov;
-	double	pixel_height;
-	double	pixel_width;
+	t_vec	c;
+	t_vec	u;
+	t_vec	v;
+	bool	ambient_light_is_already_exist;
+	bool	camera_is_already_exist;
 }	t_scene;
 
 typedef struct s_env {

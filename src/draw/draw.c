@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/18 13:23:57 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:54:19 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 #include <math.h>
 #include <stdio.h>
 
-void	draw(t_env *env);
+void			draw(t_env *env);
+static t_vec	eye_ray_direction(t_env *env, int x, int y);
+static void		pixel_put(t_env *env, int x, int y, int color);
 
 void	draw(t_env *env)
 {
@@ -28,10 +30,6 @@ void	draw(t_env *env)
 	t_ray	eye_ray;
 	t_rgb	rgb;
 
-	env->scene->pixel_width = 2 * tan(env->scene->fov / 360 * M_PI) \
-								/ env->window_width;
-	env->scene->pixel_height = env->scene->pixel_width \
-								* env->window_height / env->window_width;
 	y = 0;
 	while (y < env->window_height)
 	{
@@ -39,8 +37,7 @@ void	draw(t_env *env)
 		while (x < env->window_width)
 		{
 			eye_ray.start = env->scene->eye_pos;
-			eye_ray.direction = diff_vec(screen_to_coord(env, x, y), \
-										eye_ray.start);
+			eye_ray.direction = eye_ray_direction(env, x, y);
 			set_trgb(&rgb, 100, 149, 237);
 			raytrace(env->scene, &eye_ray, &rgb);
 			pixel_put(env, x, y, encode_trgb(rgb));
@@ -48,4 +45,32 @@ void	draw(t_env *env)
 		}
 		y++;
 	}
+}
+
+static t_vec	eye_ray_direction(t_env *env, int x, int y)
+{
+	t_vec	c;
+	t_vec	u;
+	t_vec	v;
+
+	c = env->scene->c;
+	u = env->scene->u;
+	v = env->scene->v;
+	return (norm_vec(\
+				add_vec(\
+					c, \
+					add_vec(\
+						constant_mul_vec(u, (x - env->window_width / 2)), \
+						constant_mul_vec(v, (-y + env->window_height / 2)) \
+					) \
+				) \
+			));
+}
+
+static void	pixel_put(t_env *env, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = env->img_data + (y * env->bytes_per_line + x * env->bytes_per_pixel);
+	*(int *)dst = color;
 }
