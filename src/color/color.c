@@ -13,20 +13,6 @@
 #include "color.h"
 #include "math_utils.h"
 
-int	encode_rgb(uint8_t r, uint8_t g, uint8_t b)
-{
-	return (r << 16 | g << 8 | b);
-}
-
-t_rgb	double_to_trgb(double r, double g, double b)
-{
-	return ((t_rgb){
-		.r = r,
-		.g = g,
-		.b = b
-	});
-}
-
 void	set_trgb(t_rgb *rgb, double r, double g, double b)
 {
 	rgb->r = r;
