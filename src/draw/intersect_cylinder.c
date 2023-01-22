@@ -110,8 +110,6 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 	return (ret);
 }
 
-bool
-
 void	set_out_intp(t_intersect *out_intp, const t_cylinder *cy, \
 						const t_ray *ray, t_discrim d)
 {
