@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:23:42 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:59:48 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw(t_env *env)
 		{
 			eye_ray.start = env->scene->eye_pos;
 			eye_ray.direction = eye_ray_direction(env, x, y);
-			set_trgb(&rgb, 100, 149, 237);
+			set_trgb(&rgb, 0, 0, 0);
 			raytrace(env->scene, &eye_ray, &rgb);
 			pixel_put(env, x, y, encode_trgb(rgb));
 			x++;
