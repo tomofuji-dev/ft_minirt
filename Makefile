@@ -24,6 +24,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/init_light.c \
 				$(SRC_DIR)/init/init_mlx.c \
 				$(SRC_DIR)/init/init_scene.c \
+				$(SRC_DIR)/init/init_scene_utils.c \
 				$(SRC_DIR)/init/init_shape.c \
 				$(SRC_DIR)/init/utils.c \
 				$(SRC_DIR)/hook/setup_hook.c \

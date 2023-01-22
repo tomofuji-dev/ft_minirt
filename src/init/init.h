@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:22:38 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:04:12 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ bool	is_valid_format(char ***splited, \
 						const size_t tp_len, const size_t dp_lens[]);
 bool	is_valid_rgb(char **str, t_rgb *rgb);
 bool	is_valid_vec(char **str, t_vec *vec, bool norm);
+
+void	exit_if_not_valid_scene(t_scene	*scene);
 
 t_rgb	calc_rgb_ratio(t_rgb rgb, double ratio);
 bool	append_light(t_scene *scene);
