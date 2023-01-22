@@ -6,17 +6,22 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:10:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 13:06:15 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 12:15:03 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 void	perror_exit(const char *msg)
 {
-	perror(msg);
+	if (errno != 0)
+		perror(msg);
+	else
+		ft_putendl_fd((char *)msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
