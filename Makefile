@@ -24,6 +24,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/init_light.c \
 				$(SRC_DIR)/init/init_mlx.c \
 				$(SRC_DIR)/init/init_scene.c \
+				$(SRC_DIR)/init/init_scene_utils.c \
 				$(SRC_DIR)/init/init_shape.c \
 				$(SRC_DIR)/init/utils.c \
 				$(SRC_DIR)/hook/setup_hook.c \
@@ -41,6 +42,9 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/rt_strtod.c \
 				$(SRC_DIR)/utils/rt_atoi.c \
 				$(SRC_DIR)/utils/rt_split.c \
+				$(SRC_DIR)/utils/print_for_gnl.c \
+				$(SRC_DIR)/utils/print_scene.c \
+				$(SRC_DIR)/utils/print_scene_utils.c \
 				$(SRC_DIR)/utils/utils.c
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.d)

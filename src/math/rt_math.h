@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_UTILS_H
-# define MATH_UTILS_H
+#ifndef RT_MATH_H
+# define RT_MATH_H
 
 // init_vec.c
 t_vec	init_vec(double x, double y, double z);
