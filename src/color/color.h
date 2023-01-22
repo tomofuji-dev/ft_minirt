@@ -16,7 +16,6 @@
 # include <stdint.h>
 # include "minirt.h"
 
-int		encode_rgb(uint8_t r, uint8_t g, uint8_t b);
 int		encode_trgb(t_rgb rgb);
 void	set_trgb(t_rgb *rgb, double r, double g, double b);
 void	add_on_rgb(t_rgb *rgb, t_rgb ref, t_light light, double dot);
