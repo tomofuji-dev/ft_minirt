@@ -25,7 +25,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/init_mlx.c \
 				$(SRC_DIR)/init/init_scene.c \
 				$(SRC_DIR)/init/init_shape.c \
-				$(SRC_DIR)/init/init_utils.c \
+				$(SRC_DIR)/init/utils.c \
 				$(SRC_DIR)/hook/setup_hook.c \
 				$(SRC_DIR)/hook/handle_key.c \
 				$(SRC_DIR)/hook/handle_loop.c \
@@ -36,6 +36,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/math/vec.c \
+				$(SRC_DIR)/math/vec_utils.c \
 				$(SRC_DIR)/math/utils.c \
 				$(SRC_DIR)/utils/rt_strtod.c \
 				$(SRC_DIR)/utils/rt_atoi.c \
