@@ -6,12 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:43:27 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:23:37 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
-#include "math_utils.h"
+#include "rt_math.h"
 
 void	set_trgb(t_rgb *rgb, double r, double g, double b)
 {

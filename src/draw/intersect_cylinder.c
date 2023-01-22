@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_cylinder.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/22 11:23:52 by tfujiwar          #+#    #+#             */
+/*   Updated: 2023/01/22 11:23:53 by tfujiwar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
-#include "math_utils.h"
+#include "rt_math.h"
 #include <math.h>
 
 static t_discrim	intersect_cylinder_discrim(const t_shape *shape, \

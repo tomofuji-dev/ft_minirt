@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 16:54:19 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:23:42 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "color.h"
 #include "util.h"
 #include "init.h"
-#include "math_utils.h"
+#include "rt_math.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>

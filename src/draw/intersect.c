@@ -6,12 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 13:18:01 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:24:10 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "math_utils.h"
+#include "rt_math.h"
 #include <math.h>
 
 bool	intersect(const t_shape *shape, const t_ray *ray, \

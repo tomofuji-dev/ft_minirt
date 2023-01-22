@@ -6,14 +6,14 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:05:16 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:24:23 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
 #include "color.h"
-#include "math_utils.h"
+#include "rt_math.h"
 #include "utils.h"
 #include "get_next_line.h"
 #include "init.h"

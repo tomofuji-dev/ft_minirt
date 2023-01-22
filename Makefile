@@ -37,6 +37,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/math/vec.c \
+				$(SRC_DIR)/math/vec_utils.c \
 				$(SRC_DIR)/math/utils.c \
 				$(SRC_DIR)/utils/rt_strtod.c \
 				$(SRC_DIR)/utils/rt_atoi.c \

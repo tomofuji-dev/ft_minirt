@@ -6,12 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:43:46 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:24:14 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "math_utils.h"
+#include "rt_math.h"
 #include "draw.h"
 #include "color.h"
 #include <math.h>

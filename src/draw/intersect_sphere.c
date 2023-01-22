@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_sphere.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/22 11:24:01 by tfujiwar          #+#    #+#             */
+/*   Updated: 2023/01/22 11:24:05 by tfujiwar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "draw.h"
-#include "math_utils.h"
+#include "rt_math.h"
 
 static t_discrim	intersect_sphere_discrim(const t_shape *shape, \
 											const t_ray *ray);
