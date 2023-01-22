@@ -25,9 +25,9 @@ double	inner_product(t_vec v1, t_vec v2);
 t_vec	outer_product(t_vec v1, t_vec v2);
 t_vec	constant_mul_vec(t_vec v, double c);
 // utils.c
-double	ft_min(double x, double y);
-double	ft_max(double x, double y);
-double	ft_clamp(double f, double min, double max);
+double	rt_min(double x, double y);
+double	rt_max(double x, double y);
+double	rt_clamp(double f, double min, double max);
 double	rand_range(double a, double b);
 
 #endif

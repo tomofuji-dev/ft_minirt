@@ -55,7 +55,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 				continue ;
 			}
 			vars.nl_dot = inner_product(shape_intp.intp.normal, vars.l);
-			vars.nl_dot = ft_clamp(vars.nl_dot, 0, 1);
+			vars.nl_dot = rt_clamp(vars.nl_dot, 0, 1);
 			add_on_rgb(rgb, shape_intp.shape->material.diffuse_ref, *light, vars.nl_dot);
 			if (vars.nl_dot > 0)
 			{
@@ -64,7 +64,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 				vars.v = norm_vec(constant_mul_vec(\
 										eye_ray->direction, -1));
 				vars.vr_dot = inner_product(vars.v, vars.r);
-				vars.vr_dot = ft_clamp(vars.vr_dot, 0, 1);
+				vars.vr_dot = rt_clamp(vars.vr_dot, 0, 1);
 				vars.vr_dot_pow = pow(vars.vr_dot, shape_intp.shape->material.shininess);
 				add_on_rgb(rgb, shape_intp.shape->material.specular_ref, *light, vars.vr_dot_pow);
 			}
