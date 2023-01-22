@@ -85,11 +85,9 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 	ret = false;
 	cy = &shape->u_data.cylinder;
 	s.u_data.plane.normal = constant_mul_vec(cy->direction, -1);
-	/* same */
 	plane_pos = add_vec(cy->position, \
 				constant_mul_vec(cy->direction, -1 * cy->height / 2));
 	s.u_data.plane.position = plane_pos;
-	/*  */
 	if (intersect_plane(&s, ray, &intp) && \
 		abs_vec(diff_vec(intp.position, plane_pos)) <= cy->radius)
 	{
@@ -97,11 +95,9 @@ static bool	intersect_cylinder_bottom(const t_shape *shape, \
 		*out_intp = intp;
 	}
 	s.u_data.plane.normal = cy->direction;
-	/* same */
 	plane_pos = add_vec(cy->position, \
 				constant_mul_vec(cy->direction, cy->height / 2));
 	s.u_data.plane.position = plane_pos;
-	/*  */
 	if (intersect_plane(&s, ray, &intp) && \
 		abs_vec(diff_vec(intp.position, plane_pos)) <= cy->radius)
 	{
