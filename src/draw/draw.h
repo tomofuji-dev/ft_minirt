@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:33:08 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 15:53:54 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 09:56:34 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ bool	intersect_plane(const t_shape *shape, const t_ray *ray, \
 						t_intersect *out_intp);
 bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb);
 // util.c
-void	pixel_put(t_env *env, int x, int y, int color);
 t_vec	screen_to_coord(t_env *env, int x, int y);
 // intersect_sphere.c
 bool	intersect_sphere(const t_shape *shape, const t_ray *ray, \

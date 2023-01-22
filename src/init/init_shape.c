@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 14:25:10 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 10:32:09 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool	init_sphere(t_scene *scene, char ***splited)
 		return (false);
 	if (!rt_strtod(splited[2][0], &sph->radius))
 		return (false);
+	sph->radius /= 2;
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
@@ -93,6 +94,7 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 		return (false);
 	if (!rt_strtod(splited[3][0], &cy->radius))
 		return (false);
+	cy->radius /= 2;
 	if (!rt_strtod(splited[4][0], &cy->height))
 		return (false);
 	if (!is_valid_rgb(splited[5], &rgb))
