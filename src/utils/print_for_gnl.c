@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_for_gnl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 10:42:48 by tfujiwar         ###   ########.fr       */
+/*   Created: 2023/01/22 10:36:32 by tfujiwar          #+#    #+#             */
+/*   Updated: 2023/01/22 10:45:50 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "init.h"
-#include "hook.h"
-#include "utils.h"
 #include <stdio.h>
 
-int	main(int argc, char *argv[])
+void	print_dp(char **dp)
 {
-	t_env		env;
+	size_t	i;
 
-	if (argc != 2)
-		perror_exit("not valid argc");
-	init_scene(&env, argv[1]);
-	print_scene(env.scene);
-	init_mlx(&env);
-	setup_hook(&env);
+	i = 0;
+	while (dp[i] != NULL)
+	{
+		printf("%s\n", dp[i]);
+		i++;
+	}
+}
+
+void	print_splited(char ***splited)
+{
+	size_t	i;
+
+	i = 0;
+	while (splited[i] != NULL)
+	{
+		printf("-----\n");
+		print_dp(splited[i]);
+		i++;
+	}
 }

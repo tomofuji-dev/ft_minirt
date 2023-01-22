@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 17:55:23 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 10:45:22 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@
 void		init_scene(t_env *env, char *rt_file);
 static bool	scene_setting(t_scene *scene, char *line);
 static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited);
-
-static void	print_dp(char **dp);
-static void	print_splited(char ***splited);
 
 void	init_scene(t_env *env, char *rt_file)
 {
@@ -127,29 +124,4 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 		return (init_cylinder(scene, splited));
 	else
 		return (false);
-}
-
-static void	print_dp(char **dp)
-{
-	size_t	i;
-
-	i = 0;
-	while (dp[i] != NULL)
-	{
-		printf("%s\n", dp[i]);
-		i++;
-	}
-}
-
-static void	print_splited(char ***splited)
-{
-	size_t	i;
-
-	i = 0;
-	while (splited[i] != NULL)
-	{
-		printf("-----\n");
-		print_dp(splited[i]);
-		i++;
-	}
 }
