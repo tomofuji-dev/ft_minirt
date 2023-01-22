@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 12:14:24 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 10:54:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 15:21:01 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ bool	init_light(t_scene *scene, char ***splited)
 		return (false);
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
-	scene->light->type = LT_POINT;
-	scene->light->illuminance = calc_rgb_ratio(rgb, light_ratio);
+	light->type = LT_POINT;
+	light->illuminance = calc_rgb_ratio(rgb, light_ratio);
 	return (true);
 }
 
