@@ -19,12 +19,40 @@
 static void	set_info(t_info *info, double max_dist, \
 					bool exit_once_found, bool out_needed);
 
+void	get_distance_eye_to_light(t_raytrace *vars, t_light *light, t_shape_intp shape_intp)
+{
+	if (light->type == LT_POINT)
+	{
+		vars->l = norm_vec(diff_vec(light->vector, \
+											shape_intp.intp.position));
+		vars->dl = abs_vec(diff_vec(light->vector, \
+											shape_intp.intp.position)) - C_EPSILON;
+	}
+	else if (light->type == LT_DIRECTIONAL)
+	{
+		vars->l = norm_vec(constant_mul_vec(\
+									light->vector, -1));
+		vars->dl = INFINITY;
+	}
+}
+
+void	calculate_specular_ref(t_raytrace *vars, t_shape_intp shape_intp, const t_ray *eye_ray)
+{
+	vars->r = norm_vec(diff_vec(constant_mul_vec(\
+									shape_intp.intp.normal, 2 * vars->nl_dot), vars->l));
+	vars->v = norm_vec(constant_mul_vec(\
+										eye_ray->direction, -1));
+	vars->vr_dot = inner_product(vars->v, vars->r);
+	vars->vr_dot = rt_clamp(vars->vr_dot, 0, 1);
+	vars->vr_dot_pow = pow(vars->vr_dot, shape_intp.shape->material.shininess);
+}
+
 bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 {
 	t_shape_intp	shape_intp;
-	t_light		*light;
-	t_raytrace	vars;
-	t_info		info;
+	t_light			*light;
+	t_raytrace		vars;
+	t_info			info;
 
 	set_info(&info, INFINITY, false, true);
 	if (get_nearest_shape(scene, eye_ray, info, &shape_intp))
@@ -33,19 +61,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 		light = scene->light;
 		while (light != NULL)
 		{
-			if (light->type == LT_POINT)
-			{
-				vars.l = norm_vec(diff_vec(light->vector, \
-											shape_intp.intp.position));
-				vars.dl = abs_vec(diff_vec(light->vector, \
-											shape_intp.intp.position)) - C_EPSILON;
-			}
-			else if (light->type == LT_DIRECTIONAL)
-			{
-				vars.l = norm_vec(constant_mul_vec(\
-									light->vector, -1));
-				vars.dl = INFINITY;
-			}
+			get_distance_eye_to_light(&vars, light, shape_intp);
 			vars.shadow_ray.start = add_vec(shape_intp.intp.position, constant_mul_vec(vars.l, C_EPSILON));
 			vars.shadow_ray.direction = vars.l;
 			set_info(&info, vars.dl, true, false);
@@ -59,13 +75,7 @@ bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
 			add_on_rgb(rgb, shape_intp.shape->material.diffuse_ref, *light, vars.nl_dot);
 			if (vars.nl_dot > 0)
 			{
-				vars.r = norm_vec(diff_vec(constant_mul_vec(\
-									shape_intp.intp.normal, 2 * vars.nl_dot), vars.l));
-				vars.v = norm_vec(constant_mul_vec(\
-										eye_ray->direction, -1));
-				vars.vr_dot = inner_product(vars.v, vars.r);
-				vars.vr_dot = rt_clamp(vars.vr_dot, 0, 1);
-				vars.vr_dot_pow = pow(vars.vr_dot, shape_intp.shape->material.shininess);
+				calculate_specular_ref(&vars, shape_intp, eye_ray);
 				add_on_rgb(rgb, shape_intp.shape->material.specular_ref, *light, vars.vr_dot_pow);
 			}
 			light = light->next;

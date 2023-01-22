@@ -42,7 +42,9 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 		}
 		shape = shape->next;
 	}
-	return (set_output(nearest_shape, nearest_intp, info, shape_intp));
+	if (set_output(nearest_shape, nearest_intp, info, shape_intp))
+		return (true);
+	return (false);
 }
 
 bool	intersect(const t_shape *shape, const t_ray *ray, t_intersect *out_intp)
