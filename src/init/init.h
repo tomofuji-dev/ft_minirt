@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:04:12 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 15:41:13 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool	is_valid_format(char ***splited, \
 bool	is_valid_rgb(char **str, t_rgb *rgb);
 bool	is_valid_vec(char **str, t_vec *vec, bool norm);
 
+int		rt_fname_to_fd(char *rt_file);
 void	exit_if_not_valid_scene(t_scene	*scene);
 
 t_rgb	calc_rgb_ratio(t_rgb rgb, double ratio);
