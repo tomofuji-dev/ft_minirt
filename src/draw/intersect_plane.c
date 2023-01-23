@@ -6,13 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 11:12:45 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 11:16:09 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:59:05 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "rt_math.h"
-#include <math.h>
 
 bool	intersect_plane(const t_shape *shape, const t_ray *ray, \
 						t_intersect *out_intp)

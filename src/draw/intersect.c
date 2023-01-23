@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 11:12:52 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:24:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "rt_math.h"
 #include <math.h>
 
-bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
+bool		get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 							t_info info, t_shape_intp *shape_intp);
-bool	intersect(const t_shape *shape, const t_ray *ray, \
-					t_intersect *out_intp);
+static bool	intersect(const t_shape *shape, const t_ray *ray, \
+						t_intersect *out_intp);
 
 bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 							t_info info, t_shape_intp *shape_intp)
@@ -47,7 +47,8 @@ bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 	return (false);
 }
 
-bool	intersect(const t_shape *shape, const t_ray *ray, t_intersect *out_intp)
+static bool	intersect(const t_shape *shape, \
+						const t_ray *ray, t_intersect *out_intp)
 {
 	if (shape->type == ST_SPHERE)
 		return (intersect_sphere(shape, ray, out_intp));
