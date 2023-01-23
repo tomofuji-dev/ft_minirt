@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:47:15 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/20 14:04:07 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:37:38 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static bool	strtod_get_frac(t_strtod *sd)
 		sd->dec_pt = sd->mant_size;
 	else
 		sd->mant_size--;
-	if (sd->mant_size == 0 || sd->mant_size > 18)
+	if (sd->mant_size == 0 || sd->mant_size > 18 \
+		|| sd->mant_size - sd->dec_pt > 6)
 		return (false);
 	else
 	{
