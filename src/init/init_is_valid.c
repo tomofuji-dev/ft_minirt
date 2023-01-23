@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:37:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 18:23:59 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:07:47 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "utils.h"
 #include "minirt.h"
 #include "rt_math.h"
+#include "libft.h"
 
 #define LEN_RGB 3
 #define LEN_VEC 3
@@ -89,12 +90,12 @@ bool	is_valid_bool(const char *str, bool *is_checker_board)
 {
 	if (ft_strncmp(str, "y", 1) == 0)
 	{
-		*is_checker_board == true;
+		*is_checker_board = true;
 		return (true);
 	}
 	else if (ft_strncmp(str, "n", 1) == 0)
 	{
-		*is_checker_board == false;
+		*is_checker_board = false;
 		return (true);
 	}
 	else

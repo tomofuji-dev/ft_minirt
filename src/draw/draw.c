@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:36:47 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:59:48 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:04:28 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static t_vec	eye_ray_direction(t_env *env, int x, int y)
 	t_vec	u;
 	t_vec	v;
 
-	c = env->scene->c;
-	u = env->scene->u;
-	v = env->scene->v;
+	c = env->scene->basis.c;
+	u = env->scene->basis.u;
+	v = env->scene->basis.v;
 	return (norm_vec(\
 				add_vec(\
 					c, \
