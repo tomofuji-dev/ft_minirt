@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:24:23 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 15:41:00 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <math.h>
-#include <stdarg.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -39,14 +38,12 @@ void	init_scene(t_env *env, char *rt_file)
 	char	*line;
 	t_scene	*scene;
 
-	fd = open(rt_file, O_RDWR);
-	if (fd < 0)
-		perror_exit("invalid fd");
+	fd = rt_fname_to_fd(rt_file);
 	scene = calloc_scene();
 	errno = 0;
 	while (get_next_line(fd, &line))
 	{
-		printf("%s", line);
+		printf("-----\n%s\n", line);
 		if (!scene_setting(scene, line))
 		{
 			free_scene(scene);

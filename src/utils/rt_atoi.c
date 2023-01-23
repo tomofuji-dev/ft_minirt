@@ -6,12 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:47:00 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 14:46:52 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 12:11:58 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 bool		rt_atoi(char *str, int *out);
 static bool	handle_digit(char **tmp, int sign, int *out);
@@ -56,6 +57,5 @@ static bool	handle_digit(char **tmp, int sign, int *out)
 	}
 	if (**tmp != '\0')
 		return (false);
-	*out *= sign;
 	return (true);
 }
