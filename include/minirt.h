@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 15:38:58 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:51:09 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,6 @@ typedef struct s_ray
 	t_vec	start;
 	t_vec	direction;
 }	t_ray;
-
-typedef struct s_raytrace {
-	t_vec	l;
-	double	nl_dot;
-	double	dl;
-	t_ray	shadow_ray;
-	t_vec	v;
-	t_vec	r;
-	double	vr_dot;
-	double	vr_dot_pow;
-}	t_raytrace;
 
 typedef struct s_sphere
 {

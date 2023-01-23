@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-double	ft_min(double x, double y)
+double	rt_min(double x, double y)
 {
 	if (x <= y)
 		return (x);
@@ -20,7 +20,7 @@ double	ft_min(double x, double y)
 		return (y);
 }
 
-double	ft_max(double x, double y)
+double	rt_max(double x, double y)
 {
 	if (x >= y)
 		return (x);
@@ -28,7 +28,7 @@ double	ft_max(double x, double y)
 		return (y);
 }
 
-double	ft_clamp(double f, double min, double max)
+double	rt_clamp(double f, double min, double max)
 {
 	if (f < min)
 		return (min);

@@ -6,12 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:32:57 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:24:33 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:54:36 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <rt_math.h>
+#include "rt_math.h"
 
 t_vec	add_vec(t_vec v1, t_vec v2);
 t_vec	diff_vec(t_vec v1, t_vec v2);

@@ -41,7 +41,7 @@ void	multiple_rgb(t_rgb *product, t_rgb rgb1, t_rgb rgb2)
 
 void	clamp_mul_rgb(t_rgb *rgb, double n)
 {
-	rgb->r = n * ft_clamp(rgb->r, 0, 1);
-	rgb->g = n * ft_clamp(rgb->g, 0, 1);
-	rgb->b = n * ft_clamp(rgb->b, 0, 1);
+	rgb->r = n * rt_clamp(rgb->r, 0, 1);
+	rgb->g = n * rt_clamp(rgb->g, 0, 1);
+	rgb->b = n * rt_clamp(rgb->b, 0, 1);
 }

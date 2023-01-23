@@ -32,9 +32,12 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/hook/handle_loop.c \
 				$(SRC_DIR)/draw/draw.c \
 				$(SRC_DIR)/draw/intersect.c \
+				$(SRC_DIR)/draw/intersect_plane.c \
 				$(SRC_DIR)/draw/intersect_sphere.c \
 				$(SRC_DIR)/draw/intersect_cylinder.c \
+				$(SRC_DIR)/draw/intersect_utils.c \
 				$(SRC_DIR)/draw/raytrace.c \
+				$(SRC_DIR)/draw/raytrace_calc_ref.c \
 				$(SRC_DIR)/color/color.c \
 				$(SRC_DIR)/math/vec.c \
 				$(SRC_DIR)/math/vec_utils.c \
@@ -42,10 +45,10 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/rt_strtod.c \
 				$(SRC_DIR)/utils/rt_atoi.c \
 				$(SRC_DIR)/utils/rt_split.c \
-				$(SRC_DIR)/utils/utils.c \
 				$(SRC_DIR)/utils/print_for_gnl.c \
 				$(SRC_DIR)/utils/print_scene.c \
-				$(SRC_DIR)/utils/print_scene_utils.c
+				$(SRC_DIR)/utils/print_scene_utils.c \
+				$(SRC_DIR)/utils/utils.c
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.d)
 .PHONY: $(DEPS)
