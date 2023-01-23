@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:33:08 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 09:56:34 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:15:20 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ void	draw(t_env *env);
 // intersect.c
 bool	get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 							t_info info, t_shape_intp *shape_intp);
-void	process_discrim(t_discrim *d);
+bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb);
+// intersect_plane.c
 bool	intersect_plane(const t_shape *shape, const t_ray *ray, \
 						t_intersect *out_intp);
-bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb);
-// util.c
-t_vec	screen_to_coord(t_env *env, int x, int y);
 // intersect_sphere.c
 bool	intersect_sphere(const t_shape *shape, const t_ray *ray, \
 						t_intersect *out_intp);
 // intersect_cylinder.c
 bool	intersect_cylinder(const t_shape *shape, const t_ray *ray, \
 							t_intersect *out_intp);
+// intersect_utils.c
+void	process_discrim(t_discrim *d);
+bool	set_output(t_shape *nearest_shape, t_intersect nearest_intp, \
+					t_info info, t_shape_intp *shape_intp);
 
 #endif
