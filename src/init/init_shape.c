@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:14:46 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:20:54 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ bool	init_sphere(t_scene *scene, char ***splited)
 	sph->radius /= 2;
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
+	shape->is_checker_board = false;
 	return (true);
 }
 
 bool	init_plane(t_scene *scene, char ***splited)
 {
-	const size_t	tp_len = 4;
-	const size_t	dp_lens[4] = {1, 3, 3, 3};
+	const size_t	tp_len = 5;
+	const size_t	dp_lens[5] = {1, 3, 3, 3, 1};
 	t_shape			*shape;
 	t_plane			*pl;
 	t_rgb			rgb;
@@ -64,6 +65,10 @@ bool	init_plane(t_scene *scene, char ***splited)
 		return (false);
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
+	if (!is_valid_bool(splited[4], &shape->is_checker_board))
+		return (false);
+	if (shape->is_checker_board)
+		init_basis_vector(shape);
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
 	return (true);
@@ -93,6 +98,7 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 	cy->radius /= 2;
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
+	shape->is_checker_board = false;
 	return (true);
 }
 
