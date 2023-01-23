@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   init_scene_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 14:07:43 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
+/*   Created: 2023/01/22 11:01:25 by tfujiwar          #+#    #+#             */
+/*   Updated: 2023/01/22 11:03:44 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include <errno.h>
+#include "utils.h"
 
-# include <stdint.h>
-# include "minirt.h"
-
-int		encode_trgb(t_rgb rgb);
-void	set_trgb(t_rgb *rgb, double r, double g, double b);
-void	add_on_rgb(t_rgb *rgb, t_rgb ref, t_light light, double dot);
-void	multiple_rgb(t_rgb *product, t_rgb rgb1, t_rgb rgb2);
-void	clamp_mul_rgb(t_rgb *rgb, double n);
-
-#endif
+void	exit_if_not_valid_scene(t_scene	*scene)
+{
+	if (errno != 0)
+	{
+		free_scene(scene);
+		perror_exit("error in gnl");
+	}
+	if (!(scene->ambient_light_is_already_exist \
+		&& scene->camera_is_already_exist))
+	{
+		free_scene(scene);
+		perror_exit("no ambient light or camera");
+	}
+}

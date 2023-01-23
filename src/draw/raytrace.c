@@ -6,77 +6,80 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:11:35 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:43:46 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:26:23 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "math_utils.h"
+#include "rt_math.h"
 #include "draw.h"
 #include "color.h"
 #include <math.h>
-#include <stdio.h>
 
-bool	raytrace(const t_scene *scene, const t_ray *eye_ray, t_rgb *rgb)
+bool		raytrace(const t_scene *scene, \
+					const t_ray *eye_ray, t_rgb *rgb);
+static bool	is_in_shadow(const t_scene *scene, t_rt *rt);
+
+static void	set_info(t_info *info, double max_dist, \
+					bool exit_once_found, bool out_needed);
+
+bool	raytrace(const t_scene *scene, \
+					const t_ray *eye_ray, t_rgb *rgb)
 {
-	t_shape		*shape;
-	t_intersect	intp;
-	t_light		*light;
-	t_raytrace	vars;
-	t_info		info;
+	t_rt	rt;
 
-	info.max_dist = INFINITY;
-	info.exit_once_found = false;
-	if (get_nearest_shape(scene, eye_ray, info, &shape, &intp))
+	set_info(&rt.info, INFINITY, false, true);
+	if (get_nearest_shape(scene, eye_ray, rt.info, &rt.shape_intp))
 	{
-		rgb->r = scene->ambient_illuminance.r * shape->material.ambient_ref.r;
-		rgb->g = scene->ambient_illuminance.g * shape->material.ambient_ref.g;
-		rgb->b = scene->ambient_illuminance.b * shape->material.ambient_ref.b;
-		light = scene->light;
-		while (light != NULL)
+		calc_ambient_ref(rgb, scene, &rt);
+		rt.light = scene->light;
+		while (rt.light != NULL)
 		{
-			if (light->type == LT_POINT)
-			{
-				vars.l = norm_vec(diff_vec(light->vector, \
-											intp.position));
-				vars.dl = abs_vec(diff_vec(light->vector, \
-											intp.position)) - C_EPSILON;
-			}
-			else if (light->type == LT_DIRECTIONAL)
-			{
-				vars.l = norm_vec(constant_mul_vec(\
-									light->vector, -1));
-				vars.dl = INFINITY;
-			}
-			vars.shadow_ray.start = add_vec(intp.position, constant_mul_vec(vars.l, C_EPSILON));
-			vars.shadow_ray.direction = vars.l;
-			info.max_dist = vars.dl;
-			info.exit_once_found = true;
-			if (get_nearest_shape(scene, &vars.shadow_ray, info, NULL, NULL))
-			{
-				light = light->next;
+			if (is_in_shadow(scene, &rt))
 				continue ;
-			}
-			vars.nl_dot = inner_product(intp.normal, vars.l);
-			vars.nl_dot = clamp(vars.nl_dot, 0, 1);
-			add_on_rgb(rgb, shape->material.diffuse_ref, *light, vars.nl_dot);
-			if (vars.nl_dot > 0)
-			{
-				vars.r = norm_vec(diff_vec(constant_mul_vec(\
-									intp.normal, 2 * vars.nl_dot), vars.l));
-				vars.v = norm_vec(constant_mul_vec(\
-										eye_ray->direction, -1));
-				vars.vr_dot = inner_product(vars.v, vars.r);
-				vars.vr_dot = clamp(vars.vr_dot, 0, 1);
-				vars.vr_dot_pow = pow(vars.vr_dot, shape->material.shininess);
-				add_on_rgb(rgb, shape->material.specular_ref, *light, vars.vr_dot_pow);
-			}
-			light = light->next;
+			calc_diffuse_ref(rgb, &rt);
+			if (rt.vars.nl_dot > 0)
+				calc_specular_ref(rgb, eye_ray, &rt);
+			rt.light = rt.light->next;
 		}
-		rgb->r = 255 * clamp(rgb->r, 0, 1);
-		rgb->g = 255 * clamp(rgb->g, 0, 1);
-		rgb->b = 255 * clamp(rgb->b, 0, 1);
+		clamp_mul_rgb(rgb, 255);
 		return (true);
 	}
 	return (false);
+}
+
+static bool	is_in_shadow(const t_scene *scene, t_rt *rt)
+{
+	if (rt->light->type == LT_POINT)
+	{
+		rt->vars.l = norm_vec(diff_vec(rt->light->vector, \
+											rt->shape_intp.intp.position));
+		rt->vars.dl = abs_vec(diff_vec(rt->light->vector, \
+									rt->shape_intp.intp.position)) - C_EPSILON;
+	}
+	else if (rt->light->type == LT_DIRECTIONAL)
+	{
+		rt->vars.l = norm_vec(constant_mul_vec(\
+									rt->light->vector, -1));
+		rt->vars.dl = INFINITY;
+	}
+	rt->vars.shadow_ray.start = add_vec(rt->shape_intp.intp.position, \
+								constant_mul_vec(rt->vars.l, C_EPSILON));
+	rt->vars.shadow_ray.direction = rt->vars.l;
+	set_info(&rt->info, rt->vars.dl, true, false);
+	if (get_nearest_shape(scene, &rt->vars.shadow_ray, \
+							rt->info, &rt->shape_intp))
+	{
+		rt->light = rt->light->next;
+		return (true);
+	}
+	return (false);
+}
+
+static void	set_info(t_info *info, double max_dist, \
+					bool exit_once_found, bool output_needed)
+{
+	info->max_dist = max_dist;
+	info->exit_once_found = exit_once_found;
+	info->output_needed = output_needed;
 }

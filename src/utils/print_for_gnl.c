@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_for_gnl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 17:32:38 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/15 18:48:07 by tfujiwar         ###   ########.fr       */
+/*   Created: 2023/01/22 10:36:32 by tfujiwar          #+#    #+#             */
+/*   Updated: 2023/01/22 10:45:50 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <stdio.h>
 
-double	rt_min(double x, double y)
+void	print_dp(char **dp)
 {
-	if (x <= y)
-		return (x);
-	else
-		return (y);
+	size_t	i;
+
+	i = 0;
+	while (dp[i] != NULL)
+	{
+		printf("%s\n", dp[i]);
+		i++;
+	}
 }
 
-double	rt_max(double x, double y)
+void	print_splited(char ***splited)
 {
-	if (x >= y)
-		return (x);
-	else
-		return (y);
-}
+	size_t	i;
 
-double	rt_clamp(double f, double min, double max)
-{
-	if (f < min)
-		return (min);
-	else if (f > max)
-		return (max);
-	else
-		return (f);
-}
-
-double	rand_range(double a, double b)
-{
-	return (a + (b - a) * (double)rand() / RAND_MAX);
+	i = 0;
+	while (splited[i] != NULL)
+	{
+		printf("-----\n");
+		print_dp(splited[i]);
+		i++;
+	}
 }

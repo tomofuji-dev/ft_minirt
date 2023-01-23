@@ -6,14 +6,14 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:37:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 17:58:50 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:24:19 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include "utils.h"
 #include "minirt.h"
-#include "math_utils.h"
+#include "rt_math.h"
 
 #define LEN_RGB 3
 #define LEN_VEC 3

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:39:02 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/21 18:01:20 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/22 10:43:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,15 @@ size_t	calc_tp_len(char ***tp);
 void	free_tp(char ***tp);
 
 bool	rt_atoi(char *str, int *out);
+
+void	print_dp(char **dp);
+void	print_splited(char ***splited);
+
+void	print_scene(t_scene *scene);
+void	print_vec(t_vec *vec);
+void	print_rgb(t_rgb *rgb);
+void	print_sphere(t_sphere *sphere);
+void	print_plane(t_plane *plane);
+void	print_cylinder(t_cylinder *cylinder);
 
 #endif
