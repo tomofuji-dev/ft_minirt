@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 11:01:25 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 15:40:49 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:51:02 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,59 @@
 #define LEN_DOT_RT	3
 #define DOT_RT		".rt"
 
+int			rt_fname_to_fd(char *rt_file);
+static bool	is_valid_fname(char *rt_file);
+static bool	dp_last(char **dest, char **dp);
+void		exit_if_not_valid_scene(t_scene	*scene);
+
 int	rt_fname_to_fd(char *rt_file)
 {
 	int		fd;
-	size_t	rt_name_size;
 
-	rt_name_size = ft_strlen(rt_file);
-	if (rt_name_size <= LEN_DOT_RT)
+	if (!is_valid_fname(rt_file))
 		perror_exit("invalid fname");
-	if (ft_strcmp(&rt_file[rt_name_size - LEN_DOT_RT], DOT_RT) != 0)
-		perror_exit("invalid extension");
 	fd = open(rt_file, O_RDWR);
 	if (fd < 0)
 		perror_exit("invalid fd");
 	return (fd);
+}
+
+static bool	is_valid_fname(char *rt_file)
+{
+	char	**splited;
+	char	*last;
+	size_t	rt_name_size;
+
+	splited = ft_split(rt_file, '/');
+	if (splited == NULL)
+		perror_exit("malloc failed");
+	if (!dp_last(&last, splited))
+	{
+		free_dp(splited);
+		return (false);
+	}
+	rt_name_size = ft_strlen(last);
+	if (rt_name_size <= LEN_DOT_RT \
+		|| ft_strcmp(&last[rt_name_size - LEN_DOT_RT], DOT_RT) != 0)
+	{
+		free_dp(splited);
+		return (false);
+	}
+	free_dp(splited);
+	return (true);
+}
+
+static bool	dp_last(char **dest, char **dp)
+{
+	size_t	i;
+
+	i = 0;
+	while (dp[i] != NULL)
+		i++;
+	if (i == 0)
+		return (false);
+	*dest = dp[i - 1];
+	return (true);
 }
 
 void	exit_if_not_valid_scene(t_scene	*scene)

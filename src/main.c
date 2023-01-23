@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 16:44:21 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:52:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	main(int argc, char *argv[])
 	setup_hook(&env);
 }
 
-// __attribute__((destructor))
-// static void	destructor(void)
-// {
-// 	system("leaks -q minirt");
-// }
+__attribute__((destructor))
+static void	destructor(void)
+{
+	system("leaks -q minirt");
+}

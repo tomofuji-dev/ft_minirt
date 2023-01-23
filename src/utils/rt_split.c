@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:26:12 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:10:08 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:51:21 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool		rt_split(const char *str, char ****tp);
 size_t		calc_dp_len(char **dp);
 size_t		calc_tp_len(char ***tp);
 void		free_tp(char ***tp);
-static void	free_dp(char **dp);
+void		free_dp(char **dp);
 
 bool	rt_split(const char *str, char ****tp)
 {
@@ -73,7 +73,7 @@ size_t	calc_tp_len(char ***tp)
 	return (i);
 }
 
-static void	free_dp(char **dp)
+void	free_dp(char **dp)
 {
 	size_t	i;
 
