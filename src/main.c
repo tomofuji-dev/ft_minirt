@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 10:42:48 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:44:21 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include "hook.h"
 #include "utils.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+
+// void	s(int s)
+// {
+// 	if (s == SIGINT)
+// 		exit(0);
+// }
+
+// embed the following code to main.
+// signal(SIGINT, &s);
 
 int	main(int argc, char *argv[])
 {
@@ -27,3 +38,9 @@ int	main(int argc, char *argv[])
 	init_mlx(&env);
 	setup_hook(&env);
 }
+
+// __attribute__((destructor))
+// static void	destructor(void)
+// {
+// 	system("leaks -q minirt");
+// }
