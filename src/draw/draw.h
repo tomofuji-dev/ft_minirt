@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:33:08 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 12:24:22 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:03:22 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ typedef struct s_shape_intp
 }				t_shape_intp;
 
 typedef struct s_rt_vars {
-	t_vec			l;
-	double			nl_dot;
-	double			dl;
-	t_ray			shadow_ray;
-	t_vec			v;
-	t_vec			r;
-	double			vr_dot;
-	double			vr_dot_pow;
+	t_vec		l;
+	double		nl_dot;
+	double		dl;
+	t_ray		shadow_ray;
+	t_vec		v;
+	t_vec		r;
+	double		vr_dot;
+	double		vr_dot_pow;
 }			t_rt_vars;
 
 typedef struct s_rt {
@@ -69,5 +69,6 @@ bool	intersect_cylinder(const t_shape *shape, const t_ray *ray, \
 void	process_discrim(t_discrim *d);
 bool	set_output(t_shape *nearest_shape, t_intersect nearest_intp, \
 					t_info info, t_shape_intp *shape_intp);
-
+// checker_board.c
+bool	checker_board(double x, double y);
 #endif

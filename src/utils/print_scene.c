@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:39:07 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 10:42:18 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:55:51 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	print_scene(t_scene *scene)
 	while (shape != NULL)
 	{
 		print_shape(shape);
-		print_material(&shape->material);
 		printf("\n");
 		shape = shape->next;
 	}
@@ -73,6 +72,8 @@ static void	print_shape(t_shape *shape)
 		printf("type: cylinder\n");
 		print_cylinder(&shape->u_data.cylinder);
 	}
+	print_material(&shape->material);
+	printf("is_checker_board: %d\n", shape->is_checker_board);
 }
 
 static void	print_material(t_material *material)
