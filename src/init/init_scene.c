@@ -93,6 +93,8 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 		return (init_plane(scene, splited));
 	else if (ft_strcmp(splited[0][0], "cy") == 0)
 		return (init_cylinder(scene, splited));
+//	else if (ft_strcmp(splited[0][0]), "co" == 0)
+//		return (init_cone(scene, splited));
 	else
 		return (false);
 }
@@ -102,10 +104,10 @@ static t_scene	*calloc_scene(void)
 	t_scene	*scene;
 
 	scene = ft_calloc(1, sizeof(t_scene));
-	scene->ambient_light_is_already_exist = false;
-	scene->camera_is_already_exist = false;
 	if (scene == NULL)
 		perror_exit("failed to malloc scene");
+	scene->ambient_light_is_already_exist = false;
+	scene->camera_is_already_exist = false;
 	return (scene);
 }
 
