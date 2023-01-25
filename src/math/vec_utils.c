@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 11:17:59 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:25:42 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:47:20 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <math.h>
 
 t_vec	init_vec(double x, double y, double z);
+void	set_vec(t_vec *v, double x, double y, double z);
 t_vec	norm_vec(t_vec v);
 double	sum_of_squares(t_vec v);
 double	abs_vec(t_vec v);

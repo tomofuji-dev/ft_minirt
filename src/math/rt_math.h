@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.h                                       :+:      :+:    :+:   */
+/*   rt_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:33:29 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 17:54:45 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:51:03 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ double	rt_min(double x, double y);
 double	rt_max(double x, double y);
 double	rt_clamp(double f, double min, double max);
 double	rand_range(double a, double b);
+void	calc_basis(t_basis *basis);
 
 #endif

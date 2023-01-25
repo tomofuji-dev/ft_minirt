@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:37:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:24:19 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:13:53 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "utils.h"
 #include "minirt.h"
 #include "rt_math.h"
+#include "libft.h"
 
 #define LEN_RGB 3
 #define LEN_VEC 3

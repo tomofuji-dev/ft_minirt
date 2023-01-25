@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 11:51:09 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:12:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_rgb {
 	double	b;
 }	t_rgb;
 
+typedef struct s_basis
+{
+	t_vec	c;
+	t_vec	u;
+	t_vec	v;
+}	t_basis;
+
 typedef struct s_discrim {
 	double	a;
 	double	b;
@@ -65,6 +72,7 @@ typedef struct s_plane
 {
 	t_vec	normal;
 	t_vec	position;
+	t_basis	basis;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -100,6 +108,7 @@ typedef struct s_shape
 		t_cylinder	cylinder;
 	}	u_data;
 	t_material		material;
+	double			checker_board_w;
 	struct s_shape	*next;
 }	t_shape;
 
@@ -132,9 +141,7 @@ typedef struct s_scene
 	t_vec	eye_pos;
 	t_vec	eye_direction;
 	double	fov;
-	t_vec	c;
-	t_vec	u;
-	t_vec	v;
+	t_basis	basis;
 	bool	ambient_light_is_already_exist;
 	bool	camera_is_already_exist;
 }	t_scene;

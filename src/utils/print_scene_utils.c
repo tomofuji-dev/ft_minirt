@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:42:54 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 10:43:47 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:56:50 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	print_plane(t_plane *plane)
 	print_vec(&plane->normal);
 	printf("position: ");
 	print_vec(&plane->position);
+	printf("basis.u: ");
+	print_vec(&plane->basis.u);
+	printf("basis.v: ");
+	print_vec(&plane->basis.v);
 }
 
 void	print_cylinder(t_cylinder *cylinder)

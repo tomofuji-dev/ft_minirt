@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 15:41:00 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:57:37 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool		scene_setting(t_scene *scene, char *line);
 static bool		branch_process_by_type_identifier(\
 							t_scene *scene, char ***splited);
 static t_scene	*calloc_scene(void);
-static void		calc_basis_vector(t_env *env);
+static void		set_basis_scene(t_env *env);
 
 void	init_scene(t_env *env, char *rt_file)
 {
@@ -52,7 +52,7 @@ void	init_scene(t_env *env, char *rt_file)
 	}
 	exit_if_not_valid_scene(scene);
 	env->scene = scene;
-	calc_basis_vector(env);
+	set_basis_scene(env);
 }
 
 static bool	scene_setting(t_scene *scene, char *line)
@@ -109,26 +109,14 @@ static t_scene	*calloc_scene(void)
 	return (scene);
 }
 
-static void	calc_basis_vector(t_env *env)
+static void	set_basis_scene(t_env *env)
 {
 	t_scene	*scene;
 
 	scene = env->scene;
 	env->window_width = WINDOW_WIDTH;
 	env->window_height = WINDOW_HEIGHT;
-	scene->c = constant_mul_vec(scene->eye_direction, \
+	scene->basis.c = constant_mul_vec(scene->eye_direction, \
 						env->window_width / (2 * tan(scene->fov / 360 * M_PI)));
-	if (scene->c.x == 0 && scene->c.y == 0)
-	{
-		scene->u = init_vec(1.0, 0.0, 0.0);
-		scene->v = init_vec(0.0, 1.0, 0.0);
-	}
-	else
-	{
-		scene->u.x = -1 * scene->c.y / \
-					sqrt(pow(scene->c.x, 2) + pow(scene->c.y, 2));
-		scene->u.y = scene->c.x / sqrt(pow(scene->c.x, 2) + pow(scene->c.y, 2));
-		scene->u.z = 0;
-		scene->v = outer_product(scene->eye_direction, scene->u);
-	}
+	calc_basis(&scene->basis);
 }

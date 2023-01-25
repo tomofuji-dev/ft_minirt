@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 11:14:46 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:17:41 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "init.h"
 #include "utils.h"
 #include "color.h"
+#include "rt_math.h"
 
 bool		init_sphere(t_scene *scene, char ***splited);
 bool		init_plane(t_scene *scene, char ***splited);
 bool		init_cylinder(t_scene *scene, char ***splited);
 static void	default_material(t_material *material);
+static void	set_basis_plane(t_plane *pl, t_scene *scene);
 
 bool	init_sphere(t_scene *scene, char ***splited)
 {
@@ -42,13 +44,14 @@ bool	init_sphere(t_scene *scene, char ***splited)
 	sph->radius /= 2;
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
+	shape->checker_board_w = 0;
 	return (true);
 }
 
 bool	init_plane(t_scene *scene, char ***splited)
 {
-	const size_t	tp_len = 4;
-	const size_t	dp_lens[4] = {1, 3, 3, 3};
+	const size_t	tp_len = 5;
+	const size_t	dp_lens[5] = {1, 3, 3, 3, 1};
 	t_shape			*shape;
 	t_plane			*pl;
 	t_rgb			rgb;
@@ -64,6 +67,11 @@ bool	init_plane(t_scene *scene, char ***splited)
 		return (false);
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
+	if (!rt_strtod(splited[4][0], &shape->checker_board_w)
+		|| shape->checker_board_w < 0)
+		return (false);
+	if (shape->checker_board_w != 0)
+		set_basis_plane(pl, scene);
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
 	return (true);
@@ -93,6 +101,7 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 	cy->radius /= 2;
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
+	shape->checker_board_w = 0;
 	return (true);
 }
 
@@ -102,4 +111,10 @@ static void	default_material(t_material *material)
 	set_trgb(&material->specular_ref, 0.3, 0.3, 0.3);
 	material->shininess = 8.0;
 	return ;
+}
+
+static void	set_basis_plane(t_plane *pl, t_scene *scene)
+{
+	pl->basis.c = diff_vec(pl->position, scene->eye_pos);
+	calc_basis(&pl->basis);
 }
