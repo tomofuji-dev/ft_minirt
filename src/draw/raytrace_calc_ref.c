@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:21:17 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/24 16:26:22 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:18:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void			calc_diffuse_ref(t_rgb *rgb, t_rt *rt);
 void			calc_specular_ref(t_rgb *rgb, const t_ray *eye_ray, t_rt *rt);
 static t_rgb	calc_solid_rgb(t_shape_intp shape_intp);
 static t_rgb	calc_solid_rgb_plane(t_shape_intp shape_intp);
-
 
 void	calc_ambient_ref(t_rgb *rgb, const t_scene *scene, t_rt *rt)
 {
@@ -73,13 +72,11 @@ static t_rgb	calc_solid_rgb_plane(t_shape_intp shape_intp)
 
 	shape = shape_intp.shape;
 	pl = shape->u_data.plane;
-	if (shape->is_checker_board == false)
+	if (shape->checker_board_w == 0)
 		return (shape_intp.shape->material.diffuse_ref);
 	vec_pl_to_intp = diff_vec(shape_intp.intp.position, pl.position);
-	x = inner_product(vec_pl_to_intp, pl.basis.u) \
-		* 1000 / rt_clamp(pow(shape_intp.intp.distance, 2), 1.0, 10000);
-	y = inner_product(vec_pl_to_intp, pl.basis.v) \
-		* 1000 / rt_clamp(pow(shape_intp.intp.distance, 2), 1.0, 10000);
+	x = inner_product(vec_pl_to_intp, pl.basis.u) * shape->checker_board_w;
+	y = inner_product(vec_pl_to_intp, pl.basis.v) * shape->checker_board_w;
 	if (checker_board(x, y))
 		return ((t_rgb){.r = 0.0, .g = 0.0, .b = 0.0});
 	else

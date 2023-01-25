@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:28:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 18:57:10 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:12:49 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_shape
 		t_cylinder	cylinder;
 	}	u_data;
 	t_material		material;
-	bool			is_checker_board;
+	double			checker_board_w;
 	struct s_shape	*next;
 }	t_shape;
 

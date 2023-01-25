@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:37:41 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 19:07:47 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:13:53 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ bool	is_valid_format(char ***splited, \
 						const size_t tp_len, const size_t dp_lens[]);
 bool	is_valid_rgb(char **str, t_rgb *rgb);
 bool	is_valid_vec(char **str, t_vec *vec, bool norm);
-bool	is_valid_bool(const char *str, bool *is_checker_board);
 
 bool	is_valid_format(char ***splited, \
 						const size_t tp_len, const size_t dp_lens[])
@@ -84,20 +83,4 @@ bool	is_valid_vec(char **str, t_vec *vec, bool norm)
 		*vec = norm_vec(*vec);
 	}
 	return (true);
-}
-
-bool	is_valid_bool(const char *str, bool *is_checker_board)
-{
-	if (ft_strncmp(str, "y", 1) == 0)
-	{
-		*is_checker_board = true;
-		return (true);
-	}
-	else if (ft_strncmp(str, "n", 1) == 0)
-	{
-		*is_checker_board = false;
-		return (true);
-	}
-	else
-		return (false);
 }

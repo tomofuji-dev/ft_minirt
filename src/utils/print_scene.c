@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 10:39:07 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/24 13:55:51 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:18:11 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	print_shape(t_shape *shape)
 		print_cylinder(&shape->u_data.cylinder);
 	}
 	print_material(&shape->material);
-	printf("is_checker_board: %d\n", shape->is_checker_board);
+	printf("checker_board_w: %lf\n", shape->checker_board_w);
 }
 
 static void	print_material(t_material *material)
