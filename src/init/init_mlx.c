@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 12:50:42 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:05:40 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include "error.h"
 #include <mlx.h>
 
-void		init_mlx(t_env *env);
+void		init_mlx(t_env *env, char *window_title);
 static void	free_mlx_and_exit(t_env *env, bool destroy_display, \
 								bool destroy_window, char *msg);
 
-void	init_mlx(t_env *env)
+void	init_mlx(t_env *env, char *window_title)
 {
 	env->mlx_ptr = mlx_init();
 	if (env->mlx_ptr == NULL)
 		free_mlx_and_exit(env, false, false, ERR_INIT_MLX);
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->window_width, \
-									env->window_height, WINDOW_TITLE);
+									env->window_height, window_title);
 	if (env->win_ptr == NULL)
 		free_mlx_and_exit(env, true, false, ERR_INIT_WINDOW);
 	env->img_ptr = mlx_new_image(env->mlx_ptr, env->window_width, \

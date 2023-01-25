@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 11:55:18 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:05:50 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define INIT_H
 
 void	init_scene(t_env *env, char *rt_file);
-void	init_mlx(t_env *env);
+void	init_mlx(t_env *env, char *window_title);
 
 bool	init_ambient_light(t_scene *scene, char ***splited);
 bool	init_light(t_scene *scene, char ***splited);
