@@ -6,12 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:47:15 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/23 17:37:38 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:25:23 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
+#include "error.h"
 
 bool			rt_strtod(const char *string, double *out);
 static bool		strtod_count_digits(const char *string, t_strtod *sd);
@@ -25,9 +26,9 @@ bool	rt_strtod(const char *string, double *out)
 
 	ft_bzero(&sd, sizeof(t_strtod));
 	if (!strtod_count_digits(string, &sd))
-		return (false);
+		return (print_err_return_false(ERR_STRTOD));
 	if (!strtod_get_frac(&sd))
-		return (false);
+		return (print_err_return_false(ERR_STRTOD));
 	*out = strtod_exp_frac(&sd);
 	if (sd.sign)
 		*out *= -1;

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 11:17:48 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:05:50 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define INIT_H
 
 void	init_scene(t_env *env, char *rt_file);
-void	init_mlx(t_env *env);
+void	init_mlx(t_env *env, char *window_title);
 
 bool	init_ambient_light(t_scene *scene, char ***splited);
 bool	init_light(t_scene *scene, char ***splited);
@@ -31,6 +31,7 @@ bool	is_valid_vec(char **str, t_vec *vec, bool norm);
 
 int		rt_fname_to_fd(char *rt_file);
 void	exit_if_not_valid_scene(t_scene	*scene);
+bool	print_err_return_false(char *msg);
 
 t_rgb	calc_rgb_ratio(t_rgb rgb, double ratio);
 bool	append_light(t_scene *scene);
