@@ -6,10 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:47:00 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 12:11:58 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:26:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
+#include "error.h"
 #include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -45,17 +47,17 @@ static bool	handle_digit(char **tmp, int sign, int *out)
 			if (*out <= (INT_MAX - tmp_digit) / 10)
 				*out = 10 * (*out) + tmp_digit;
 			else
-				return (false);
+				return (print_err_return_false(ERR_ATOI));
 		}
 		else
 		{
 			if (*out >= (INT_MIN + tmp_digit) / 10)
 				*out = 10 * (*out) - tmp_digit;
 			else
-				return (false);
+				return (print_err_return_false(ERR_ATOI));
 		}
 	}
 	if (**tmp != '\0')
-		return (false);
+		return (print_err_return_false(ERR_ATOI));
 	return (true);
 }

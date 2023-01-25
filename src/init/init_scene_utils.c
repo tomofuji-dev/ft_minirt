@@ -6,12 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 11:01:25 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 19:51:02 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:23:44 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils.h"
+#include "error.h"
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -24,16 +25,17 @@ int			rt_fname_to_fd(char *rt_file);
 static bool	is_valid_fname(char *rt_file);
 static bool	dp_last(char **dest, char **dp);
 void		exit_if_not_valid_scene(t_scene	*scene);
+bool		print_err_return_false(char *msg);
 
 int	rt_fname_to_fd(char *rt_file)
 {
 	int		fd;
 
 	if (!is_valid_fname(rt_file))
-		perror_exit("invalid fname");
+		perror_exit(ERR_FNAME, true);
 	fd = open(rt_file, O_RDWR);
 	if (fd < 0)
-		perror_exit("invalid fd");
+		perror_exit(ERR_FD, true);
 	return (fd);
 }
 
@@ -45,7 +47,7 @@ static bool	is_valid_fname(char *rt_file)
 
 	splited = ft_split(rt_file, '/');
 	if (splited == NULL)
-		perror_exit("malloc failed");
+		perror_exit(ERR_MALLOC, true);
 	if (!dp_last(&last, splited))
 	{
 		free_dp(splited);
@@ -80,12 +82,12 @@ void	exit_if_not_valid_scene(t_scene	*scene)
 	if (errno != 0)
 	{
 		free_scene(scene);
-		perror_exit("error in gnl");
+		perror_exit(ERR_GNL, true);
 	}
 	if (!(scene->ambient_light_is_already_exist \
 		&& scene->camera_is_already_exist))
 	{
 		free_scene(scene);
-		perror_exit("no ambient light or camera");
+		perror_exit(ERR_NO_AMB_CAM, false);
 	}
 }

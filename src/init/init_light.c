@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 12:14:24 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 15:21:01 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:49:30 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "init.h"
 #include "utils.h"
 #include "color.h"
+#include "error.h"
 
 bool	init_ambient_light(t_scene *scene, char ***splited);
 bool	init_light(t_scene *scene, char ***splited);
@@ -27,7 +28,7 @@ bool	init_ambient_light(t_scene *scene, char ***splited)
 	t_rgb			rgb;
 
 	if (scene->ambient_light_is_already_exist)
-		return (false);
+		return (print_err_return_false(ERR_AMBIENT_LIGHT));
 	if (!is_valid_format(splited, tp_len, dp_lens))
 		return (false);
 	if (!rt_strtod(splited[1][0], &ambient_light_ratio))
@@ -59,7 +60,7 @@ bool	init_light(t_scene *scene, char ***splited)
 	if (!rt_strtod(splited[2][0], &light_ratio))
 		return (false);
 	if (!(0.0 <= light_ratio && light_ratio <= 1.0))
-		return (false);
+		return (print_err_return_false(ERR_RANGE));
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
 	light->type = LT_POINT;
@@ -74,7 +75,7 @@ bool	init_camera(t_scene *scene, char ***splited)
 	int				fov;
 
 	if (scene->camera_is_already_exist)
-		return (false);
+		return (print_err_return_false(ERR_CAMERA));
 	if (!is_valid_format(splited, tp_len, dp_lens))
 		return (false);
 	if (!is_valid_vec(splited[1], &scene->eye_pos, false))
@@ -84,7 +85,7 @@ bool	init_camera(t_scene *scene, char ***splited)
 	if (!rt_atoi(splited[3][0], &fov))
 		return (false);
 	if (!(0 < fov && fov < 180))
-		return (false);
+		return (print_err_return_false(ERR_RANGE));
 	scene->fov = (double)fov;
 	scene->camera_is_already_exist = true;
 	return (true);

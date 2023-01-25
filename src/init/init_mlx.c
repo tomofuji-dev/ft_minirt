@@ -6,17 +6,14 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:46:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/21 16:15:55 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:50:42 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "utils.h"
+#include "error.h"
 #include <mlx.h>
-
-#define ERR_INIT_MLX	"failed to init mlx"
-#define ERR_INIT_WINDOW	"failed to create new window"
-#define ERR_INIT_IMG	"failed to create new img"
 
 void		init_mlx(t_env *env);
 static void	free_mlx_and_exit(t_env *env, bool destroy_display, \
@@ -48,5 +45,5 @@ static void	free_mlx_and_exit(t_env *env, bool destroy_display, \
 	if (destroy_display)
 		mlx_destroy_display(env->mlx_ptr);
 	free_scene(env->scene);
-	perror_exit(msg);
+	perror_exit(msg, false);
 }

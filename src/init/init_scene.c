@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 18:57:37 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:56:44 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "utils.h"
 #include "get_next_line.h"
 #include "init.h"
+#include "error.h"
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -47,7 +48,7 @@ void	init_scene(t_env *env, char *rt_file)
 		if (!scene_setting(scene, line))
 		{
 			free_scene(scene);
-			perror_exit("error in parse line");
+			exit(EXIT_FAILURE);
 		}
 	}
 	exit_if_not_valid_scene(scene);
@@ -70,7 +71,6 @@ static bool	scene_setting(t_scene *scene, char *line)
 		free(line);
 		return (false);
 	}
-	print_splited(splited);
 	free(line);
 	is_valid = branch_process_by_type_identifier(scene, splited);
 	free_tp(splited);
@@ -94,7 +94,7 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 	else if (ft_strcmp(splited[0][0], "cy") == 0)
 		return (init_cylinder(scene, splited));
 	else
-		return (false);
+		return (print_err_return_false(ERR_IDENTIFIER));
 }
 
 static t_scene	*calloc_scene(void)
@@ -105,7 +105,7 @@ static t_scene	*calloc_scene(void)
 	scene->ambient_light_is_already_exist = false;
 	scene->camera_is_already_exist = false;
 	if (scene == NULL)
-		perror_exit("failed to malloc scene");
+		perror_exit(ERR_MALLOC, true);
 	return (scene);
 }
 
