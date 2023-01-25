@@ -53,6 +53,7 @@ void	init_scene(t_env *env, char *rt_file)
 	exit_if_not_valid_scene(scene);
 	env->scene = scene;
 	set_basis_scene(env);
+	close(fd);
 }
 
 static bool	scene_setting(t_scene *scene, char *line)
@@ -93,7 +94,7 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 		return (init_plane(scene, splited));
 	else if (ft_strcmp(splited[0][0], "cy") == 0)
 		return (init_cylinder(scene, splited));
-	else if (ft_strcmp(splited[0][0]), "co" == 0)
+	else if (ft_strcmp(splited[0][0], "co") == 0)
 		return (init_cone(scene, splited));
 	else
 		return (false);
