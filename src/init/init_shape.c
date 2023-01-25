@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shape.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hommayunosuke <hommayunosuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 11:17:41 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:46:26 by hommayunosu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 bool		init_sphere(t_scene *scene, char ***splited);
 bool		init_plane(t_scene *scene, char ***splited);
 bool		init_cylinder(t_scene *scene, char ***splited);
+bool		init_cone(t_scene *scene, char ***splited);
 static void	default_material(t_material *material);
 static void	set_basis_plane(t_plane *pl, t_scene *scene);
 
@@ -107,11 +108,11 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 
 bool	init_cone(t_scene *scene, char ***splited)
 {
-	const 	size_t	tp_len = 5;
-	const 	size_t	dp_len[5] = {1, 3, 3, 1, 3};
-	t_shape	*shape;
-	t_cone	*cone;
-	t_rgb	rgb;
+	const size_t	tp_len = 5;
+	const size_t	dp_len[5] = {1, 3, 3, 1, 3};
+	t_shape			*shape;
+	t_cone			*cone;
+	t_rgb			rgb;
 
 	if (!is_valid_format(splited, tp_len, dp_len) \
 		|| !append_shape(scene))
@@ -121,7 +122,7 @@ bool	init_cone(t_scene *scene, char ***splited)
 	cone = &shape->u_data.cone;
 	if (!is_valid_vec(splited[1], &cone->position, false) \
 		|| !is_valid_vec(splited[2], &cone->direction, true) \
-		|| !rt_strtod(splited[3][0], &cone->radious) \
+		|| !rt_strtod(splited[3][0], &cone->radius) \
 		|| !rt_strtod(splited[4][0], &cone->height))
 		return (false);
 	if (!is_valid_rgb(splited[5], &rgb))
@@ -131,13 +132,6 @@ bool	init_cone(t_scene *scene, char ***splited)
 	default_material(&shape->material);
 	return (true);
 }
-
-/*
-co pa(x, y, z) va(x,y,z) alpha rgb(r,g,b)
-v: ray_vec
-p: camera location
-delta p: p - pa
-*/
 
 static void	default_material(t_material *material)
 {

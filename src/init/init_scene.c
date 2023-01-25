@@ -93,8 +93,8 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 		return (init_plane(scene, splited));
 	else if (ft_strcmp(splited[0][0], "cy") == 0)
 		return (init_cylinder(scene, splited));
-//	else if (ft_strcmp(splited[0][0]), "co" == 0)
-//		return (init_cone(scene, splited));
+	else if (ft_strcmp(splited[0][0]), "co" == 0)
+		return (init_cone(scene, splited));
 	else
 		return (false);
 }

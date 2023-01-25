@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hommayunosuke <hommayunosuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 11:17:48 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:45:16 by hommayunosu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	init_camera(t_scene *scene, char ***splited);
 bool	init_sphere(t_scene *scene, char ***splited);
 bool	init_plane(t_scene *scene, char ***splited);
 bool	init_cylinder(t_scene *scene, char ***splited);
+bool	init_cone(t_scene *scene, char ***splited);
 
 bool	is_valid_format(char ***splited, \
 						const size_t tp_len, const size_t dp_lens[]);
