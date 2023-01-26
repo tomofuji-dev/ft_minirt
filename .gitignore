@@ -55,5 +55,6 @@ dkms.conf
 #mlx
 minilibx/test/mlx-test*
 
+.idea
 .vscode
 minirt

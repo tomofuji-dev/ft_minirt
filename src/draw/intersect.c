@@ -56,5 +56,7 @@ static bool	intersect(const t_shape *shape, \
 		return (intersect_plane(shape, ray, out_intp));
 	else if (shape->type == ST_CYLINDER)
 		return (intersect_cylinder(shape, ray, out_intp));
+	else if (shape->type == ST_CONE)
+		return (intersect_cone(shape, ray, out_intp));
 	return (false);
 }

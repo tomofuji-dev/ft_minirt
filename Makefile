@@ -35,6 +35,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/draw/intersect_plane.c \
 				$(SRC_DIR)/draw/intersect_sphere.c \
 				$(SRC_DIR)/draw/intersect_cylinder.c \
+				$(SRC_DIR)/draw/intersect_cone.c \
 				$(SRC_DIR)/draw/intersect_utils.c \
 				$(SRC_DIR)/draw/raytrace.c \
 				$(SRC_DIR)/draw/raytrace_calc_ref.c \

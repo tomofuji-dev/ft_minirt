@@ -65,6 +65,9 @@ bool	intersect_sphere(const t_shape *shape, const t_ray *ray, \
 // intersect_cylinder.c
 bool	intersect_cylinder(const t_shape *shape, const t_ray *ray, \
 							t_intersect *out_intp);
+// intersect_cone.c
+bool	intersect_cone(const t_shape *shape, const t_ray *ray, \
+						t_intersect *out_intp);
 // intersect_utils.c
 void	process_discrim(t_discrim *d);
 bool	set_output(t_shape *nearest_shape, t_intersect nearest_intp, \

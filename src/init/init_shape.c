@@ -108,8 +108,8 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 
 bool	init_cone(t_scene *scene, char ***splited)
 {
-	const size_t	tp_len = 5;
-	const size_t	dp_len[5] = {1, 3, 3, 1, 3};
+	const size_t	tp_len = 6;
+	const size_t	dp_len[6] = {1, 3, 3, 1, 1, 3};
 	t_shape			*shape;
 	t_cone			*cone;
 	t_rgb			rgb;
