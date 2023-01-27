@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 13:05:50 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:05:56 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	init_camera(t_scene *scene, char ***splited);
 bool	init_sphere(t_scene *scene, char ***splited);
 bool	init_plane(t_scene *scene, char ***splited);
 bool	init_cylinder(t_scene *scene, char ***splited);
+bool	init_cone(t_scene *scene, char ***splited);
 
 bool	is_valid_format(char ***splited, \
 						const size_t tp_len, const size_t dp_lens[]);

@@ -55,7 +55,7 @@ static bool	is_valid_fname(char *rt_file)
 	}
 	rt_name_size = ft_strlen(last);
 	if (rt_name_size <= LEN_DOT_RT \
-		|| ft_strcmp(&last[rt_name_size - LEN_DOT_RT], DOT_RT) != 0)
+		|| !ft_streq(&last[rt_name_size - LEN_DOT_RT], DOT_RT))
 	{
 		free_dp(splited);
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 16:32:53 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:05:19 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_scene(t_env *env, char *rt_file)
 	exit_if_not_valid_scene(scene);
 	env->scene = scene;
 	set_basis_scene(env);
+	close(fd);
 }
 
 static bool	scene_setting(t_scene *scene, char *line)
@@ -81,18 +82,20 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 {
 	if (splited == NULL || splited[0] == NULL)
 		return (false);
-	if (ft_strcmp(splited[0][0], "A") == 0)
+	if (ft_streq(splited[0][0], "A") )
 		return (init_ambient_light(scene, splited));
-	else if (ft_strcmp(splited[0][0], "C") == 0)
+	else if (ft_streq(splited[0][0], "C") )
 		return (init_camera(scene, splited));
-	else if (ft_strcmp(splited[0][0], "L") == 0)
+	else if (ft_streq(splited[0][0], "L") )
 		return (init_light(scene, splited));
-	else if (ft_strcmp(splited[0][0], "sp") == 0)
+	else if (ft_streq(splited[0][0], "sp"))
 		return (init_sphere(scene, splited));
-	else if (ft_strcmp(splited[0][0], "pl") == 0)
+	else if (ft_streq(splited[0][0], "pl"))
 		return (init_plane(scene, splited));
-	else if (ft_strcmp(splited[0][0], "cy") == 0)
+	else if (ft_streq(splited[0][0], "cy"))
 		return (init_cylinder(scene, splited));
+	else if (ft_streq(splited[0][0], "co"))
+		return (init_cone(scene, splited));
 	else
 		return (print_err_return_false(ERR_IDENTIFIER));
 }
@@ -102,10 +105,10 @@ static t_scene	*calloc_scene(void)
 	t_scene	*scene;
 
 	scene = ft_calloc(1, sizeof(t_scene));
-	scene->ambient_light_is_already_exist = false;
-	scene->camera_is_already_exist = false;
 	if (scene == NULL)
 		perror_exit(ERR_MALLOC, true);
+	scene->ambient_light_is_already_exist = false;
+	scene->camera_is_already_exist = false;
 	return (scene);
 }
 

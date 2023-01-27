@@ -82,11 +82,20 @@ typedef struct s_cylinder
 	double	height;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	t_vec	position;
+	t_vec	direction;
+	double	radius;
+	double	height;
+}				t_cone;
+
 typedef enum e_shape
 {
 	ST_SPHERE,
 	ST_PLANE,
 	ST_CYLINDER,
+	ST_CONE,
 }	t_shape_type;
 
 typedef struct s_material
@@ -105,6 +114,7 @@ typedef struct s_shape
 		t_sphere	sphere;
 		t_plane		plane;
 		t_cylinder	cylinder;
+		t_cone		cone;
 	}	u_data;
 	t_material		material;
 	double			checker_board_w;

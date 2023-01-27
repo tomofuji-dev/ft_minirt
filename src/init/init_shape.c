@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 12:13:29 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:04:14 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 bool		init_sphere(t_scene *scene, char ***splited);
 bool		init_plane(t_scene *scene, char ***splited);
 bool		init_cylinder(t_scene *scene, char ***splited);
+bool		init_cone(t_scene *scene, char ***splited);
 static void	default_material(t_material *material);
 static void	set_basis_plane(t_plane *pl, t_scene *scene);
 
@@ -102,6 +103,33 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
 	shape->checker_board_w = 0;
+	return (true);
+}
+
+bool	init_cone(t_scene *scene, char ***splited)
+{
+	const size_t	tp_len = 6;
+	const size_t	dp_len[6] = {1, 3, 3, 1, 1, 3};
+	t_shape			*shape;
+	t_cone			*cone;
+	t_rgb			rgb;
+
+	if (!is_valid_format(splited, tp_len, dp_len) \
+		|| !append_shape(scene))
+		return (false);
+	shape = lst_last_shape(scene->shape);
+	shape->type = ST_CONE;
+	cone = &shape->u_data.cone;
+	if (!is_valid_vec(splited[1], &cone->position, false) \
+		|| !is_valid_vec(splited[2], &cone->direction, true) \
+		|| !rt_strtod(splited[3][0], &cone->radius) \
+		|| !rt_strtod(splited[4][0], &cone->height))
+		return (false);
+	if (!is_valid_rgb(splited[5], &rgb))
+		return (false);
+	cone->radius /= 2;
+	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
+	default_material(&shape->material);
 	return (true);
 }
 

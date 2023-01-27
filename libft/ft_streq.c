@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_streq.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t.fuji <t.fuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hommayunosuke <hommayunosuke@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 10:34:45 by t.fuji            #+#    #+#             */
-/*   Updated: 2022/11/08 10:36:48 by t.fuji           ###   ########.fr       */
+/*   Created: 2023/01/27 13:23:55 by hommayunosu       #+#    #+#             */
+/*   Updated: 2023/01/27 13:23:56 by hommayunosu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+bool	ft_streq(const char *s1, const char *s2)
 {
-	return (((c >= '\t') && (c <= '\r')) || (c == ' '));
+	return (!ft_strcmp(s1, s2));
 }
