@@ -1,4 +1,4 @@
-NAME		= 	minirt
+NAME		= 	miniRT
 
 SRC_DIR		= 	src
 OBJ_DIR		= 	obj

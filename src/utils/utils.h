@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:39:02 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/23 19:42:03 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:24:31 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ typedef struct s_strtod {
 }	t_strtod;
 
 bool	rt_strtod(const char *string, double *out);
-void	perror_exit(const char *msg);
+bool	rt_atoi(char *str, int *out);
+
+void	perror_exit(const char *msg, bool if_print_errno);
 void	free_scene(t_scene *scene);
+bool	print_err_return_false(char *msg);
 
 bool	rt_split(const char *str, char ****tp);
 size_t	calc_dp_len(char **dp);
 size_t	calc_tp_len(char ***tp);
 void	free_tp(char ***tp);
 void	free_dp(char **dp);
-
-bool	rt_atoi(char *str, int *out);
 
 void	print_dp(char **dp);
 void	print_splited(char ***splited);

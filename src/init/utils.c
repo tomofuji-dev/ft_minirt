@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_utils.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:04:12 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:25:44 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:22:46 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minirt.h"
+#include "error.h"
 #include <stdbool.h>
 
 t_rgb	calc_rgb_ratio(t_rgb rgb, double ratio);
@@ -44,6 +45,8 @@ bool	append_light(t_scene *scene)
 		light->next = ft_calloc(1, sizeof(t_light));
 		light = light->next;
 	}
+	if (light == NULL)
+		ft_putendl_fd(ERR_MALLOC, STDERR_FILENO);
 	return (light != NULL);
 }
 
@@ -62,6 +65,8 @@ bool	append_shape(t_scene *scene)
 		shape->next = ft_calloc(1, sizeof(t_shape));
 		shape = shape->next;
 	}
+	if (shape == NULL)
+		ft_putendl_fd(ERR_MALLOC, STDERR_FILENO);
 	return (shape != NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:10:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/22 12:15:03 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:23:53 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@
 #include <stdlib.h>
 #include <errno.h>
 
-void	perror_exit(const char *msg)
+void	perror_exit(const char *msg, bool if_print_errno)
 {
-	if (errno != 0)
+	if (if_print_errno && errno != 0)
 		perror(msg);
 	else
 		ft_putendl_fd((char *)msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
+}
+
+bool	print_err_return_false(char *msg)
+{
+	ft_putendl_fd(msg, STDERR_FILENO);
+	return (false);
 }
 
 void	free_scene(t_scene *scene)
