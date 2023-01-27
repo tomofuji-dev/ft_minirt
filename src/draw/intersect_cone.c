@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cone.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hommayunosuke <hommayunosuke@student.42    +#+  +:+       +#+        */
+/*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 13:12:58 by hommayunosu       #+#    #+#             */
-/*   Updated: 2023/01/25 14:13:16 by hommayunosu      ###   ########.fr       */
+/*   Updated: 2023/01/27 11:45:34 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,16 @@ static t_discrim	intersect_cone_discrim(const t_shape *shape, \
 	const t_cone	*cone;
 	t_vec			pe_pc; //pe:視点位置 pc:円錐のトップ
 	t_discrim		d;
+	double			sin2;
+	double			cos2;
 
 	cone = &shape->u_data.cone;
+	sin2 = pow(cone->radius, 2) / (pow(cone->radius, 2) + pow(cone->height, 2));
+	cos2 = pow(cone->height, 2) / (pow(cone->radius, 2) + pow(cone->height, 2));
 	pe_pc = diff_vec(ray->start, cone->position);
-	d.a = inner_product(ray->direction, ray->direction) \
-			- pow(inner_product(cone->direction, ray->direction), 2) \
-			- pow(cone->radius, 2) / pow(cone->height, 2) * inner_product(cone->direction, ray->direction);
-	d.b = 2 * (inner_product(ray->direction, pe_pc) \
-				- inner_product(ray->direction, cone->direction) \
-				* inner_product(pe_pc, cone->direction)) \
-				- pow(cone->radius, 2) / pow(cone->height, 2) * inner_product(pe_pc, cone->direction) * inner_product(cone->direction, ray->direction);
-	d.c = inner_product(pe_pc, pe_pc) \
-			- pow(inner_product(pe_pc, cone->direction), 2) \
-			- pow(cone->radius, 2 \
-			- pow(cone->radius, 2) / pow(cone->height, 2) * pow(inner_product(pe_pc, cone->direction), 2));
+	d.a = cos2 * sum_of_squares(diff_vec(ray->direction, constant_mul_vec(cone->direction, inner_product(ray->direction, cone->direction)))) - sin2 * pow(inner_product(ray->direction, cone->direction), 2);
+	d.b = 2 * cos2 * (inner_product(diff_vec(ray->direction, constant_mul_vec(cone->direction, inner_product(ray->direction, cone->direction))), diff_vec(pe_pc, constant_mul_vec(cone->direction, inner_product(pe_pc, cone->direction))))) - 2 * sin2 * inner_product(ray->direction, cone->direction) * inner_product(pe_pc, cone->direction);
+	d.c = cos2 * sum_of_squares(diff_vec(pe_pc, constant_mul_vec(cone->direction, inner_product(pe_pc, cone->direction)))) - sin2 * pow(inner_product(pe_pc, cone->direction), 2);
 	d.d = d.b * d.b - 4 * d.a * d.c;
 	process_discrim(&d);
 	//d.m?
