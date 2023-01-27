@@ -82,19 +82,19 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 {
 	if (splited == NULL || splited[0] == NULL)
 		return (false);
-	if (ft_strcmp(splited[0][0], "A") == 0)
+	if (ft_streq(splited[0][0], "A") )
 		return (init_ambient_light(scene, splited));
-	else if (ft_strcmp(splited[0][0], "C") == 0)
+	else if (ft_streq(splited[0][0], "C") )
 		return (init_camera(scene, splited));
-	else if (ft_strcmp(splited[0][0], "L") == 0)
+	else if (ft_streq(splited[0][0], "L") )
 		return (init_light(scene, splited));
-	else if (ft_strcmp(splited[0][0], "sp") == 0)
+	else if (ft_streq(splited[0][0], "sp"))
 		return (init_sphere(scene, splited));
-	else if (ft_strcmp(splited[0][0], "pl") == 0)
+	else if (ft_streq(splited[0][0], "pl"))
 		return (init_plane(scene, splited));
-	else if (ft_strcmp(splited[0][0], "cy") == 0)
+	else if (ft_streq(splited[0][0], "cy"))
 		return (init_cylinder(scene, splited));
-	else if (ft_strcmp(splited[0][0], "co") == 0)
+	else if (ft_streq(splited[0][0], "co"))
 		return (init_cone(scene, splited));
 	else
 		return (print_err_return_false(ERR_IDENTIFIER));
