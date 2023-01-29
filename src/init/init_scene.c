@@ -82,11 +82,11 @@ static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 {
 	if (splited == NULL || splited[0] == NULL)
 		return (false);
-	if (ft_streq(splited[0][0], "A") )
+	if (ft_streq(splited[0][0], "A"))
 		return (init_ambient_light(scene, splited));
-	else if (ft_streq(splited[0][0], "C") )
+	else if (ft_streq(splited[0][0], "C"))
 		return (init_camera(scene, splited));
-	else if (ft_streq(splited[0][0], "L") )
+	else if (ft_streq(splited[0][0], "L"))
 		return (init_light(scene, splited));
 	else if (ft_streq(splited[0][0], "sp"))
 		return (init_sphere(scene, splited));

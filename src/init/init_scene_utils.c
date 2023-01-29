@@ -12,6 +12,7 @@
 
 #include "libft.h"
 #include "utils.h"
+#include "color.h"
 #include "error.h"
 #include <errno.h>
 #include <sys/types.h>
@@ -90,4 +91,11 @@ void	exit_if_not_valid_scene(t_scene	*scene)
 		free_scene(scene);
 		perror_exit(ERR_NO_AMB_CAM, false);
 	}
+}
+
+void	default_material(t_material *material)
+{
+	set_trgb(&material->ambient_ref, 0.01, 0.01, 0.01);
+	set_trgb(&material->specular_ref, 0.3, 0.3, 0.3);
+	material->shininess = 8.0;
 }

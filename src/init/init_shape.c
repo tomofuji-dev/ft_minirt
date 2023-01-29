@@ -13,14 +13,12 @@
 #include "minirt.h"
 #include "init.h"
 #include "utils.h"
-#include "color.h"
 #include "rt_math.h"
 
 bool		init_sphere(t_scene *scene, char ***splited);
 bool		init_plane(t_scene *scene, char ***splited);
 bool		init_cylinder(t_scene *scene, char ***splited);
 bool		init_cone(t_scene *scene, char ***splited);
-static void	default_material(t_material *material);
 static void	set_basis_plane(t_plane *pl, t_scene *scene);
 
 bool	init_sphere(t_scene *scene, char ***splited)
@@ -131,14 +129,6 @@ bool	init_cone(t_scene *scene, char ***splited)
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
 	return (true);
-}
-
-static void	default_material(t_material *material)
-{
-	set_trgb(&material->ambient_ref, 0.01, 0.01, 0.01);
-	set_trgb(&material->specular_ref, 0.3, 0.3, 0.3);
-	material->shininess = 8.0;
-	return ;
 }
 
 static void	set_basis_plane(t_plane *pl, t_scene *scene)
