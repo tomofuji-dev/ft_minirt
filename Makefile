@@ -99,5 +99,8 @@ fclean:			clean
 
 re:				fclean all
 
+norm:
+				norminette $(SRCS) $(LIBFT) $(INCLUDE_DIR)
+
 .PHONY:			all clean fclean re
 -include $(DEPS)
