@@ -81,7 +81,7 @@ $(NAME):		$(MLX) $(LIBFT) $(OBJS)
 $(MLX):
 				$(MAKE) -C $(MLX_DIR)
 
-$(LIBFT):
+$(LIBFT):		FORCE
 				$(MAKE) -C $(LIBFT_DIR)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
@@ -102,5 +102,5 @@ re:				fclean all
 norm:
 				norminette $(SRCS) $(LIBFT) $(INCLUDE_DIR)
 
-.PHONY:			all clean fclean re
+.PHONY:			all clean fclean re FORCE
 -include $(DEPS)
