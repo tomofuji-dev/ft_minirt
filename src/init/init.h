@@ -40,4 +40,6 @@ bool	append_shape(t_scene *scene);
 t_light	*lst_last_light(t_light *light);
 t_shape	*lst_last_shape(t_shape *shape);
 
+void	default_material(t_material *material);
+
 #endif
