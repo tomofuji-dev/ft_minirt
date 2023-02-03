@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/27 10:05:19 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:24:35 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_scene(t_env *env, char *rt_file)
 	exit_if_not_valid_scene(scene);
 	env->scene = scene;
 	set_basis_scene(env);
-	close(fd);
+	print_scene(scene);
 }
 
 static bool	scene_setting(t_scene *scene, char *line)

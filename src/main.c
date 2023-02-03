@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 14:10:24 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:28:59 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		perror_exit(ERR_ARGC, false);
 	init_scene(&env, argv[1]);
-	print_scene(env.scene);
 	init_mlx(&env, argv[1]);
 	setup_hook(&env);
+	close_env(&env);
 }
 
 // __attribute__((destructor))

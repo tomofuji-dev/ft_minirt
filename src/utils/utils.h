@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:39:02 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/01/25 12:24:31 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:28:51 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ bool	rt_atoi(char *str, int *out);
 void	perror_exit(const char *msg, bool if_print_errno);
 void	free_scene(t_scene *scene);
 bool	print_err_return_false(char *msg);
+void	close_env(t_env *env);
 
 bool	rt_split(const char *str, char ****tp);
 size_t	calc_dp_len(char **dp);
