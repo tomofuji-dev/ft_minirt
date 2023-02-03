@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:32:38 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 19:12:50 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:00:37 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ double	rt_clamp(double f, double min, double max)
 		return (max);
 	else
 		return (f);
-}
-
-double	rand_range(double a, double b)
-{
-	return (a + (b - a) * (double)rand() / RAND_MAX);
 }
 
 void	calc_basis(t_basis *basis)

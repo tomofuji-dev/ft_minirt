@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:33:29 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 18:51:03 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:00:32 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_vec	constant_mul_vec(t_vec v, double c);
 double	rt_min(double x, double y);
 double	rt_max(double x, double y);
 double	rt_clamp(double f, double min, double max);
-double	rand_range(double a, double b);
 void	calc_basis(t_basis *basis);
 
 #endif
