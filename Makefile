@@ -108,6 +108,8 @@ test:			$(NAME)
 test_ng:		$(NAME)
 				./test_ng.sh
 
+bonus:			all
+
 FORCE:
 
 .PHONY:			all clean fclean re FORCE
