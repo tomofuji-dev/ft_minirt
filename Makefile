@@ -102,6 +102,12 @@ re:				fclean all
 norm:
 				norminette $(SRCS) $(LIBFT) $(INCLUDE_DIR)
 
+test:
+				./test.sh
+
+test_ng:
+				./test_ng.sh
+
 FORCE:
 
 .PHONY:			all clean fclean re FORCE
