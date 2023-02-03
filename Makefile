@@ -102,5 +102,7 @@ re:				fclean all
 norm:
 				norminette $(SRCS) $(LIBFT) $(INCLUDE_DIR)
 
+FORCE:
+
 .PHONY:			all clean fclean re FORCE
 -include $(DEPS)
