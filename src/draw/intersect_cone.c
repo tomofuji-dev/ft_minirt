@@ -58,8 +58,10 @@ static t_discrim	intersect_cone_discrim(const t_shape *shape, \
 	cone = &shape->u_data.cone;
 	set_discrim_structure(&d, cone, ray);
 	process_discrim(&d);
-	distance_to_intersect = abs_vec(diff_vec(add_vec(ray->start, constant_mul_vec(ray->direction, d.t)), cone->position));
-	if (distance_to_intersect < -cone->height || distance_to_intersect > cone->height)
+	distance_to_intersect = abs_vec(diff_vec(add_vec(ray->start, \
+		constant_mul_vec(ray->direction, d.t)), cone->position));
+	if (distance_to_intersect < -cone->height \
+		|| distance_to_intersect > cone->height)
 		d.t = -1;
 	return (d);
 }
