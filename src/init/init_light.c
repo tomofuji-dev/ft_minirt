@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 12:14:24 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 12:49:30 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:13:06 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ bool	init_ambient_light(t_scene *scene, char ***splited)
 		return (print_err_return_false(ERR_AMBIENT_LIGHT));
 	if (!is_valid_format(splited, tp_len, dp_lens))
 		return (false);
-	if (!rt_strtod(splited[1][0], &ambient_light_ratio))
-		return (false);
-	if (!(0.0 <= ambient_light_ratio && ambient_light_ratio <= 1.0))
+	if (!is_valid_double(splited[1][0], &ambient_light_ratio, 0.0, 1.0))
 		return (false);
 	if (!is_valid_rgb(splited[2], &rgb))
 		return (false);
@@ -57,10 +55,8 @@ bool	init_light(t_scene *scene, char ***splited)
 	light = lst_last_light(scene->light);
 	if (!is_valid_vec(splited[1], &light->vector, false))
 		return (false);
-	if (!rt_strtod(splited[2][0], &light_ratio))
+	if (!is_valid_double(splited[2][0], &light_ratio, 0.0, 1.0))
 		return (false);
-	if (!(0.0 <= light_ratio && light_ratio <= 1.0))
-		return (print_err_return_false(ERR_RANGE));
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
 	light->type = LT_POINT;
@@ -82,10 +78,8 @@ bool	init_camera(t_scene *scene, char ***splited)
 		return (false);
 	if (!is_valid_vec(splited[2], &scene->eye_direction, true))
 		return (false);
-	if (!rt_atoi(splited[3][0], &fov))
+	if (!is_valid_int(splited[3][0], &fov, 0, 180))
 		return (false);
-	if (!(0 < fov && fov < 180))
-		return (print_err_return_false(ERR_RANGE));
 	scene->fov = (double)fov;
 	scene->camera_is_already_exist = true;
 	return (true);

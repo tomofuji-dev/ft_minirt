@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:53:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/27 10:05:56 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:13:35 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ bool	init_cone(t_scene *scene, char ***splited);
 
 bool	is_valid_format(char ***splited, \
 						const size_t tp_len, const size_t dp_lens[]);
-bool	is_valid_rgb(char **str, t_rgb *rgb);
-bool	is_valid_vec(char **str, t_vec *vec, bool norm);
+bool	is_valid_rgb(char **src, t_rgb *dest);
+bool	is_valid_vec(char **src, t_vec *dest, bool norm);
+bool	is_valid_double(char *src, double *dest, double lower, double upper);
+bool	is_valid_int(char *src, int *dest, double lower, double upper);
 
 int		rt_fname_to_fd(char *rt_file);
 void	exit_if_not_valid_scene(t_scene	*scene);

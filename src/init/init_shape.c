@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 16:01:53 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/27 10:04:14 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:13:59 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "init.h"
 #include "utils.h"
 #include "rt_math.h"
+#include <math.h>
 
 bool		init_sphere(t_scene *scene, char ***splited);
 bool		init_plane(t_scene *scene, char ***splited);
@@ -36,7 +37,7 @@ bool	init_sphere(t_scene *scene, char ***splited)
 	shape->type = ST_SPHERE;
 	sph = &shape->u_data.sphere;
 	if (!is_valid_vec(splited[1], &sph->center, false) \
-		|| !rt_strtod(splited[2][0], &sph->radius))
+		|| !is_valid_double(splited[2][0], &sph->radius, 0.0, INFINITY))
 		return (false);
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
@@ -66,10 +67,9 @@ bool	init_plane(t_scene *scene, char ***splited)
 		return (false);
 	if (!is_valid_rgb(splited[3], &rgb))
 		return (false);
-	if (!rt_strtod(splited[4][0], &shape->checker_board_w)
-		|| shape->checker_board_w < 0)
+	if (!is_valid_double(splited[4][0], &shape->checker_board_w, 0.0, INFINITY))
 		return (false);
-	if (shape->checker_board_w != 0)
+	if (shape->checker_board_w != 0.0)
 		set_basis_plane(pl, scene);
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
@@ -92,8 +92,8 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 	cy = &shape->u_data.cylinder;
 	if (!is_valid_vec(splited[1], &cy->position, false) \
 		|| !is_valid_vec(splited[2], &cy->direction, true) \
-		|| !rt_strtod(splited[3][0], &cy->radius) \
-		|| !rt_strtod(splited[4][0], &cy->height))
+		|| !is_valid_double(splited[3][0], &cy->radius, 0.0, INFINITY) \
+		|| !is_valid_double(splited[4][0], &cy->height, 0.0, INFINITY))
 		return (false);
 	if (!is_valid_rgb(splited[5], &rgb))
 		return (false);
@@ -120,8 +120,8 @@ bool	init_cone(t_scene *scene, char ***splited)
 	cone = &shape->u_data.cone;
 	if (!is_valid_vec(splited[1], &cone->position, false) \
 		|| !is_valid_vec(splited[2], &cone->direction, true) \
-		|| !rt_strtod(splited[3][0], &cone->radius) \
-		|| !rt_strtod(splited[4][0], &cone->height))
+		|| !is_valid_double(splited[3][0], &cone->radius, 0.0, INFINITY) \
+		|| !is_valid_double(splited[4][0], &cone->height, 0.0, INFINITY))
 		return (false);
 	if (!is_valid_rgb(splited[5], &rgb))
 		return (false);

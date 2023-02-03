@@ -102,10 +102,10 @@ re:				fclean all
 norm:
 				norminette $(SRCS) $(LIBFT) $(INCLUDE_DIR)
 
-test:
+test:			$(NAME)
 				./test.sh
 
-test_ng:
+test_ng:		$(NAME)
 				./test_ng.sh
 
 FORCE:

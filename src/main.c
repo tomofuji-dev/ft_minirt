@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/03 12:28:59 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:19:07 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(int argc, char *argv[])
 	close_env(&env);
 }
 
-// __attribute__((destructor))
-// static void	destructor(void)
-// {
-// 	system("leaks -q minirt");
-// }
+__attribute__((destructor))
+static void	destructor(void)
+{
+	system("leaks -q minirt");
+}
