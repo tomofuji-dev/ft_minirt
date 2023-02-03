@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:07:56 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/03 13:20:14 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/03 18:19:09 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "hook.h"
 #include "utils.h"
 #include "error.h"
+#include "draw.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -36,6 +37,7 @@ int	main(int argc, char *argv[])
 		perror_exit(ERR_ARGC, false);
 	init_scene(&env, argv[1]);
 	init_mlx(&env, argv[1]);
+	draw(&env);
 	setup_hook(&env);
 	close_env(&env);
 }
