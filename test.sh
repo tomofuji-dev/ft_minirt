@@ -7,6 +7,7 @@
 ./miniRT rt_files/basic/minimalist.rt &
 ./miniRT rt_files/basic/rotate_cylinder.rt &
 ./miniRT rt_files/basic/sample.rt &
+./miniRT rt_files/basic/basic_bonus.rt &
 
 # ok
 ./miniRT rt_files/ok/..rt &
