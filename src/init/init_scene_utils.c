@@ -95,7 +95,7 @@ void	exit_if_not_valid_scene(t_scene	*scene)
 
 void	default_material(t_material *material)
 {
-	set_trgb(&material->ambient_ref, 0.01, 0.01, 0.01);
+	set_trgb(&material->ambient_ref, 0.1, 0.1, 0.1);
 	set_trgb(&material->specular_ref, 0.3, 0.3, 0.3);
 	material->shininess = 8.0;
 }
