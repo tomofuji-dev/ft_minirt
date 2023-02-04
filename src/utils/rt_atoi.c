@@ -12,9 +12,9 @@
 
 #include "utils.h"
 #include "error.h"
+#include "libft.h"
 #include <limits.h>
 #include <stdbool.h>
-#include <stdio.h>
 
 bool		rt_atoi(char *str, int *out);
 static bool	handle_digit(char **tmp, int sign, int *out);
@@ -31,6 +31,8 @@ bool	rt_atoi(char *str, int *out)
 		sign = -1;
 		tmp++;
 	}
+	if (!ft_isdigit(*tmp))
+		return (false);
 	return (handle_digit(&tmp, sign, out));
 }
 
