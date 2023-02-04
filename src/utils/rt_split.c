@@ -37,6 +37,10 @@ bool	rt_split(const char *str, char ****tp)
 	i = 0;
 	while (dp[i] != NULL)
 	{
+		if (dp[i][ft_strlen((const char *)dp[i])-1] == ',')
+		{
+			printf("フリーの処理\n");
+		}
 		(*tp)[i] = ft_split(dp[i], ',');
 		if ((*tp)[i++] == NULL)
 		{
