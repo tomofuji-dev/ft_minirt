@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:32:38 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/05 17:02:53 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/05 18:30:55 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,10 @@ void	calc_basis(t_basis *basis)
 	{
 		basis->u = norm_vec(outer_product(init_vec(0.0, 0.0, 1.0), norm_vec(basis->c)));
 		basis->v = norm_vec(outer_product(norm_vec(basis->c), basis->u));
-		print_vec(&basis->c);
-		print_vec(&basis->u);
-		print_vec(&basis->v);
 	}
 	else
 	{
 		basis->u = norm_vec(outer_product(init_vec(0.0, 1.0, 0.0), norm_vec(basis->c)));
 		basis->v = norm_vec(outer_product(norm_vec(basis->c), basis->u));
-		print_vec(&basis->c);
-		print_vec(&basis->u);
-		print_vec(&basis->v);
 	}
 }
