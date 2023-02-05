@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/03 12:24:35 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/05 17:01:31 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ static void	set_basis_scene(t_env *env)
 	env->window_width = WINDOW_WIDTH;
 	env->window_height = WINDOW_HEIGHT;
 	scene->basis.c = constant_mul_vec(scene->eye_direction, \
-						env->window_width / (2 * tan(scene->fov / 360 * M_PI)));
+						-1 * env->window_width / (2 * tan(scene->fov / 360 * M_PI)));
 	calc_basis(&scene->basis);
 }
