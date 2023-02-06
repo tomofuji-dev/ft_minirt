@@ -26,6 +26,7 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/init/init_scene.c \
 				$(SRC_DIR)/init/init_scene_utils.c \
 				$(SRC_DIR)/init/init_shape.c \
+				$(SRC_DIR)/init/init_camera_in_shape.c \
 				$(SRC_DIR)/init/utils.c \
 				$(SRC_DIR)/hook/setup_hook.c \
 				$(SRC_DIR)/hook/handle_key.c \
