@@ -40,6 +40,7 @@ bool	print_err_return_false(char *msg);
 
 // init_camera_in_shape.c
 bool	is_camera_in_sphere(t_scene *scene, t_sphere *sphere);
+bool	is_camera_in_cylinder(t_scene *scene, t_cylinder *cy);
 
 // init_is_valid.c
 bool	is_valid_rgb(char **src, t_rgb *dest);

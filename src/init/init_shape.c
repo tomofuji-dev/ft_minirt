@@ -103,6 +103,8 @@ bool	init_cylinder(t_scene *scene, char ***splited)
 	shape->material.diffuse_ref = calc_rgb_ratio(rgb, 1.0);
 	default_material(&shape->material);
 	shape->checker_board_w = 0;
+	if (is_camera_in_cylinder(scene, cy))
+		return (false);
 	return (true);
 }
 
