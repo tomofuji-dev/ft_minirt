@@ -14,7 +14,6 @@
 #include "utils.h"
 #include "minirt.h"
 #include "rt_math.h"
-#include "libft.h"
 #include "error.h"
 
 #define LEN_RGB 3
