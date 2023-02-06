@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:39:02 by t.fuji            #+#    #+#             */
-/*   Updated: 2023/02/03 12:28:51 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:46:47 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ size_t	calc_dp_len(char **dp);
 size_t	calc_tp_len(char ***tp);
 void	free_tp(char ***tp);
 void	free_dp(char **dp);
+bool	free_and_return_false(char ****tp, char **dp);
 
 void	print_dp(char **dp);
 void	print_splited(char ***splited);

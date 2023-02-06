@@ -6,11 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:26:12 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/23 19:51:21 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:49:24 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "utils.h"
+#include "error.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -39,16 +41,12 @@ bool	rt_split(const char *str, char ****tp)
 	{
 		if (dp[i][ft_strlen((const char *)dp[i])-1] == ',')
 		{
-			printf("フリーの処理\n");
-			return (false);
+			ft_putendl_fd(ERR_COL_FORMAT, STDERR_FILENO);
+			return (free_and_return_false(tp, dp));
 		}
 		(*tp)[i] = ft_split(dp[i], ',');
 		if ((*tp)[i++] == NULL)
-		{
-			free_tp(*tp);
-			free_dp(dp);
-			return (false);
-		}
+			return (free_and_return_false(tp, dp));
 	}
 	free_dp(dp);
 	return (true);

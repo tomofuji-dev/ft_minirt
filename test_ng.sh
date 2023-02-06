@@ -47,3 +47,5 @@ echo "=== tabs_instead_of_spaces.rt ==="
 ./miniRT rt_files/ng/tabs_instead_of_spaces.rt || true
 echo "=== wrong_extension.tr ==="
 ./miniRT rt_files/ng/wrong_extension.tr || true
+echo "=== end_comma.rt ==="
+./miniRT rt_files/ng/end_comma.rt || true

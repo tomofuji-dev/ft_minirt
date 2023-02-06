@@ -6,12 +6,13 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:10:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/03 12:28:38 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:47:04 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "libft.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -59,4 +60,11 @@ void	close_env(t_env *env)
 	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	mlx_destroy_display(env->mlx_ptr);
 	free_scene(env->scene);
+}
+
+bool	free_and_return_false(char ****tp, char **dp)
+{
+	free_tp(*tp);
+	free_dp(dp);
+	return (false);
 }
