@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 12:14:24 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/03 13:13:06 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:38:01 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ bool	init_camera(t_scene *scene, char ***splited)
 		return (false);
 	if (!is_valid_int(splited[3][0], &fov, 0, 180))
 		return (false);
+	if (fov == 0 || fov == 180)
+		return (print_err_return_false(ERR_RANGE));
 	scene->fov = (double)fov;
 	scene->camera_is_already_exist = true;
 	return (true);

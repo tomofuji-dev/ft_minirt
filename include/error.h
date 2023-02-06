@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:55:32 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 12:55:39 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:42:57 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 # define ERR_GNL			"error in gnl."
 # define ERR_NO_AMB_CAM		"no ambient light or camera."
 # define ERR_IDENTIFIER		"invalid identifier."
+# define ERR_INVALID_LINE	"invalid line."
 
 #endif

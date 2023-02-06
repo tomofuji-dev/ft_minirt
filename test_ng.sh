@@ -18,11 +18,11 @@ echo "=== double_long_precision.rt ==="
 echo "=== empty.rt ==="
 ./miniRT rt_files/ng/empty.rt || true
 echo "=== fov_is_greater.rt ==="
-./miniRT rt_files/ng/empty.rt || true
+./miniRT rt_files/ng/fov_is_greater.rt || true
 echo "=== fov_is_lower.rt ==="
-./miniRT rt_files/ng/empty.rt || true
+./miniRT rt_files/ng/fov_is_lower.rt || true
 echo "=== fov_is_not_integer.rt ==="
-./miniRT rt_files/ng/empty.rt || true
+./miniRT rt_files/ng/fov_is_not_integer.rt || true
 echo "=== invalid_identifier.rt ==="
 ./miniRT rt_files/ng/invalid_identifier.rt || true
 echo "=== light_ration_is_greater.rt ==="

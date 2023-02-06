@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/06 15:23:25 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:43:03 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static bool	scene_setting(t_scene *scene, char *line)
 static bool	branch_process_by_type_identifier(t_scene *scene, char ***splited)
 {
 	if (splited == NULL || splited[0] == NULL)
-		return (false);
+		return (print_err_return_false(ERR_INVALID_LINE));
 	if (ft_streq(splited[0][0], "A"))
 		return (init_ambient_light(scene, splited));
 	else if (ft_streq(splited[0][0], "C"))
