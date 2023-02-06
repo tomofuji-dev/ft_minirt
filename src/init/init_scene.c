@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:27:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/05 18:32:16 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:23:25 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static t_scene	*calloc_scene(void)
 
 	scene = ft_calloc(1, sizeof(t_scene));
 	if (scene == NULL)
-		perror_exit(ERR_MALLOC, true);
+		perror_exit(ERR_MALLOC, false);
 	scene->ambient_light_is_already_exist = false;
 	scene->camera_is_already_exist = false;
 	return (scene);

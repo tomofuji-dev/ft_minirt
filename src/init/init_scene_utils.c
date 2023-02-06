@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 11:01:25 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/01/25 12:23:44 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:24:17 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	rt_fname_to_fd(char *rt_file)
 	int		fd;
 
 	if (!is_valid_fname(rt_file))
-		perror_exit(ERR_FNAME, true);
+		perror_exit(ERR_FNAME, false);
 	fd = open(rt_file, O_RDWR);
 	if (fd < 0)
-		perror_exit(ERR_FD, true);
+		perror_exit(ERR_FD, false);
 	return (fd);
 }
 
@@ -48,7 +48,7 @@ static bool	is_valid_fname(char *rt_file)
 
 	splited = ft_split(rt_file, '/');
 	if (splited == NULL)
-		perror_exit(ERR_MALLOC, true);
+		perror_exit(ERR_MALLOC, false);
 	if (!dp_last(&last, splited))
 	{
 		free_dp(splited);
