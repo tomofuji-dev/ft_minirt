@@ -58,3 +58,5 @@ minilibx/test/mlx-test*
 .idea
 .vscode
 minirt
+rt_files2
+CMakeLists.txt
