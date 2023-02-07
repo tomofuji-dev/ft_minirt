@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:26:12 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/06 16:49:24 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:25:29 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@ bool	rt_split(const char *str, char ****tp)
 		return (false);
 	*tp = ft_calloc(calc_dp_len(dp) + 1, sizeof(char **));
 	if (*tp == NULL)
-	{
-		free_dp(dp);
-		return (false);
-	}
+		return (free_and_return_false(tp, dp));
 	i = 0;
 	while (dp[i] != NULL)
 	{
-		if (dp[i][ft_strlen((const char *)dp[i])-1] == ',')
+		if (dp[i][ft_strlen((const char *)dp[i]) - 1] == ',')
 		{
 			ft_putendl_fd(ERR_COL_FORMAT, STDERR_FILENO);
 			return (free_and_return_false(tp, dp));

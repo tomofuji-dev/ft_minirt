@@ -6,7 +6,7 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:10:14 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/06 16:47:04 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:24:29 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	close_env(t_env *env)
 
 bool	free_and_return_false(char ****tp, char **dp)
 {
-	free_tp(*tp);
+	if (tp != NULL)
+		free_tp(*tp);
 	free_dp(dp);
 	return (false);
 }
