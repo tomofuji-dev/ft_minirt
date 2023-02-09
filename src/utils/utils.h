@@ -44,9 +44,6 @@ void	free_tp(char ***tp);
 void	free_dp(char **dp);
 bool	free_and_return_false(char ****tp, char **dp);
 
-void	print_dp(char **dp);
-void	print_splited(char ***splited);
-
 void	print_scene(t_scene *scene);
 void	print_vec(t_vec *vec);
 void	print_rgb(t_rgb *rgb);

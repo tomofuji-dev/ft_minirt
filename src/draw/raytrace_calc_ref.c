@@ -14,7 +14,6 @@
 #include "draw.h"
 #include "rt_math.h"
 #include "color.h"
-#include "utils.h"
 #include <math.h>
 
 void			calc_ambient_ref(t_rgb *rgb, const t_scene *scene, t_rt *rt);

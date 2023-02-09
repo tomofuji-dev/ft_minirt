@@ -16,9 +16,6 @@
 #include "utils.h"
 #include "error.h"
 #include "draw.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
 
 // void	s(int s)
 // {

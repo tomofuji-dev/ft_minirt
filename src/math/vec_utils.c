@@ -15,7 +15,6 @@
 #include <math.h>
 
 t_vec	init_vec(double x, double y, double z);
-void	set_vec(t_vec *v, double x, double y, double z);
 t_vec	norm_vec(t_vec v);
 double	sum_of_squares(t_vec v);
 double	abs_vec(t_vec v);
@@ -27,13 +26,6 @@ t_vec	init_vec(double x, double y, double z)
 		.y = y,
 		.z = z
 	});
-}
-
-void	set_vec(t_vec *v, double x, double y, double z)
-{
-	v->x = x;
-	v->y = y;
-	v->z = z;
 }
 
 t_vec	norm_vec(t_vec v)

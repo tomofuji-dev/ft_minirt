@@ -12,7 +12,6 @@
 
 #include "minirt.h"
 #include "init.h"
-#include "utils.h"
 #include "rt_math.h"
 #include <math.h>
 

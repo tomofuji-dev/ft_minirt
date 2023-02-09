@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <minirt.h>
-#include <stdio.h>
 
 bool		checker_board(double x, double y);
 static int	is_even_odd(double n);

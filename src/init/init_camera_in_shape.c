@@ -11,10 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
-#include "utils.h"
 #include "minirt.h"
 #include "rt_math.h"
-#include "error.h"
 #include "libft.h"
 
 bool	is_camera_in_sphere(t_scene *scene, t_sphere *sphere)

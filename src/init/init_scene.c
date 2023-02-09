@@ -12,19 +12,14 @@
 
 #include "libft.h"
 #include "minirt.h"
-#include "color.h"
 #include "rt_math.h"
 #include "utils.h"
 #include "get_next_line.h"
 #include "init.h"
 #include "error.h"
-#include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <math.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 void			init_scene(t_env *env, char *rt_file);
 static bool		scene_setting(t_scene *scene, char *line);

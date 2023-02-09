@@ -15,8 +15,6 @@
 #include "color.h"
 #include "error.h"
 #include <errno.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 
 #define LEN_DOT_RT	3

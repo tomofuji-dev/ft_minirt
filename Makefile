@@ -48,7 +48,6 @@ SRCS		=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/rt_strtod.c \
 				$(SRC_DIR)/utils/rt_atoi.c \
 				$(SRC_DIR)/utils/rt_split.c \
-				$(SRC_DIR)/utils/print_for_gnl.c \
 				$(SRC_DIR)/utils/print_scene.c \
 				$(SRC_DIR)/utils/print_scene_utils.c \
 				$(SRC_DIR)/utils/utils.c

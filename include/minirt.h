@@ -18,9 +18,6 @@
 # include <stdint.h>
 # include <stdio.h>
 
-# define RETURN_SUCCESS 0
-# define RETURN_FAILURE 1
-
 # define WINDOW_WIDTH 400
 # define WINDOW_HEIGHT 400
 # define C_EPSILON 0.002

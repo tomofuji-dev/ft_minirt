@@ -12,12 +12,7 @@
 
 #include "draw.h"
 #include "color.h"
-#include "utils.h"
-#include "init.h"
 #include "rt_math.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdio.h>
 
 void			draw(t_env *env);
 static t_vec	eye_ray_direction(t_env *env, int x, int y);

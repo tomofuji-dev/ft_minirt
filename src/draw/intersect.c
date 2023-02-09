@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "rt_math.h"
-#include <math.h>
 
 bool		get_nearest_shape(const t_scene *scene, const t_ray *ray, \
 							t_info info, t_shape_intp *shape_intp);

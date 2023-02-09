@@ -13,7 +13,6 @@
 #include "minirt.h"
 #include "init.h"
 #include "utils.h"
-#include "color.h"
 #include "error.h"
 
 bool	init_ambient_light(t_scene *scene, char ***splited);
