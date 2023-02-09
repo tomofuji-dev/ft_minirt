@@ -16,6 +16,7 @@
 #include "error.h"
 #include <errno.h>
 #include <fcntl.h>
+#include "init.h"
 
 #define LEN_DOT_RT	3
 #define DOT_RT		".rt"
@@ -78,6 +79,8 @@ static bool	dp_last(char **dest, char **dp)
 
 void	exit_if_not_valid_scene(t_scene	*scene)
 {
+	t_shape	*shape;
+
 	if (errno != 0)
 	{
 		free_scene(scene);
@@ -88,6 +91,13 @@ void	exit_if_not_valid_scene(t_scene	*scene)
 	{
 		free_scene(scene);
 		perror_exit(ERR_NO_AMB_CAM, false);
+	}
+	shape = scene->shape;
+	while (shape)
+	{
+		if (is_camera_in_shape(scene, shape))
+			perror_exit(ERR_CAM_IN_SPH, false);
+		shape = shape->next;
 	}
 }
 

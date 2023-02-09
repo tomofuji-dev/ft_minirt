@@ -13,22 +13,31 @@
 #include <stdbool.h>
 #include "minirt.h"
 #include "rt_math.h"
-#include "libft.h"
 
-bool	is_camera_in_sphere(t_scene *scene, t_sphere *sphere)
+bool		is_camera_in_shape(t_scene *scene, t_shape *shape);
+static bool	is_camera_in_sphere(t_scene *scene, t_sphere *sphere);
+static bool	is_camera_in_cylinder(t_scene *scene, t_cylinder *cy);
+
+bool	is_camera_in_shape(t_scene *scene, t_shape *shape)
+{
+	if (shape->type == ST_SPHERE)
+		return (is_camera_in_sphere(scene, &shape->u_data.sphere));
+	if (shape->type == ST_CYLINDER)
+		return (is_camera_in_cylinder(scene, &shape->u_data.cylinder));
+	return (false);
+}
+
+static bool	is_camera_in_sphere(t_scene *scene, t_sphere *sphere)
 {
 	double	dist_to_center;
 
 	dist_to_center = abs_vec(diff_vec(scene->eye_pos, sphere->center));
 	if (dist_to_center <= sphere->radius)
-	{
-		ft_putstr_fd("Error: camera is in sphere\n", STDERR_FILENO);
 		return (true);
-	}
 	return (false);
 }
 
-bool	is_camera_in_cylinder(t_scene *scene, t_cylinder *cy)
+static bool	is_camera_in_cylinder(t_scene *scene, t_cylinder *cy)
 {
 	double	shortest_dist_to_axis;
 	double	h;
@@ -41,15 +50,7 @@ bool	is_camera_in_cylinder(t_scene *scene, t_cylinder *cy)
 			inner_product(diff_vec(scene->eye_pos, cy->position), \
 			norm_vec(cy->direction))))));
 		if (shortest_dist_to_axis <= cy->radius)
-		{
-			ft_putstr_fd("Error: camera is in cylinder\n", STDERR_FILENO);
 			return (true);
-		}
 	}
 	return (false);
 }
-
-//bool	is_camera_in_plane()
-//{
-//
-//}

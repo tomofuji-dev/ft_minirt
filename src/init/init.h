@@ -39,8 +39,7 @@ void	exit_if_not_valid_scene(t_scene	*scene);
 bool	print_err_return_false(char *msg);
 
 // init_camera_in_shape.c
-bool	is_camera_in_sphere(t_scene *scene, t_sphere *sphere);
-bool	is_camera_in_cylinder(t_scene *scene, t_cylinder *cy);
+bool	is_camera_in_shape(t_scene *scene, t_shape *shape);
 
 // init_is_valid.c
 bool	is_valid_rgb(char **src, t_rgb *dest);

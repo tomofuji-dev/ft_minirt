@@ -49,3 +49,7 @@ echo "=== wrong_extension.tr ==="
 ./miniRT rt_files/ng/wrong_extension.tr || true
 echo "=== end_comma.rt ==="
 ./miniRT rt_files/ng/end_comma.rt || true
+echo "=== camera_in_sphere.rt ==="
+./miniRT rt_files/ng/camera_in_sphere.rt || true
+echo "=== camera_in_cylinder.rt ==="
+./miniRT rt_files/ng/camera_in_cylinder.rt || true

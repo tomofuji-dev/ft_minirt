@@ -33,5 +33,6 @@
 # define ERR_NO_AMB_CAM		"no ambient light or camera."
 # define ERR_IDENTIFIER		"invalid identifier."
 # define ERR_INVALID_LINE	"invalid line."
+# define ERR_CAM_IN_SPH		"camera is in shape."
 
 #endif

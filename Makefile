@@ -100,7 +100,7 @@ fclean:			clean
 re:				fclean all
 
 norm:
-				norminette $(SRCS) $(LIBFT) $(INCLUDE_DIR)
+				norminette $(SRCS) $(LIBFT_DIR) $(INCLUDE_DIR)
 
 test:			$(NAME)
 				./test.sh
