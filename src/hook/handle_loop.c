@@ -6,13 +6,12 @@
 /*   By: tfujiwar <tfujiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 10:31:08 by tfujiwar          #+#    #+#             */
-/*   Updated: 2023/02/03 18:19:00 by tfujiwar         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:42:39 by tfujiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "hook.h"
-#include "util.h"
 #include <mlx.h>
 
 int	handle_loop(t_env *env)
