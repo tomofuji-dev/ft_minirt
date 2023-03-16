@@ -7,5 +7,14 @@ Our own **ray tracing**, 42 project with [Chanmachan](https://github.com/Chanmac
 ### How to use
 
 ```
-make && ./test.sh
+make && ./miniRT <scene.rt>
 ```
+
+Sample ``.rt`` files are in ``rt_files`` directory.
+
+Or in short,
+
+```
+./test.sh
+```
+
